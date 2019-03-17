@@ -2,6 +2,7 @@ package com.folioreader.ui.base;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import com.folioreader.FolioReader;
 import com.folioreader.util.AppUtil;
 
 import java.io.BufferedReader;
@@ -43,7 +44,7 @@ public class HtmlTask extends AsyncTask<String, Void, String> {
             }
             if (stringBuilder.length() > 0)
                 stringBuilder.deleteCharAt(stringBuilder.length() - 1);
-            return stringBuilder.toString();
+            return exportHtml(stringBuilder.toString());
         } catch (IOException e) {
             Log.e(TAG, "HtmlTask failed", e);
         }
@@ -59,4 +60,19 @@ public class HtmlTask extends AsyncTask<String, Void, String> {
         }
         cancel(true);
     }
+
+
+    private String exportHtml(String inputHtml) throws IOException {
+
+        if (FolioReader.get().getConfig().isNeedExport()) {
+            Log.d(TAG, "Html Export required");
+            if (FolioReader.get().getConfig().getHtmlExportCallback() == null)
+                throw new IOException("HtmlExportCallback null");
+            return FolioReader.get().getConfig().getHtmlExportCallback().exportHtml(inputHtml);
+        }
+        Log.d(TAG, "Html Export NOT required");
+        return inputHtml;
+    }
+
+
 }
