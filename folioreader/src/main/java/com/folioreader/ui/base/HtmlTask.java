@@ -44,6 +44,9 @@ public class HtmlTask extends AsyncTask<String, Void, String> {
             }
             if (stringBuilder.length() > 0)
                 stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+            Log.e(TAG, "htm content");
+            String data = stringBuilder.toString();
+            Log.d(TAG, data);
             return exportHtml(stringBuilder.toString());
         } catch (IOException e) {
             Log.e(TAG, "HtmlTask failed", e);
