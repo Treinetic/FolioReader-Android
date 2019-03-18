@@ -52,6 +52,7 @@ public class FolioReader {
     private OnClosedListener onClosedListener;
     private ReadLocator readLocator;
 
+
     @Nullable
     public Retrofit retrofit;
     @Nullable
@@ -193,6 +194,10 @@ public class FolioReader {
         this.config = config;
         this.overrideConfig = overrideConfig;
         return singleton;
+    }
+
+    public Config getConfig() {
+        return config;
     }
 
     public FolioReader setPortNumber(int portNumber) {

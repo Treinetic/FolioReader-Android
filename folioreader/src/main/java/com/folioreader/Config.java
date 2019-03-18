@@ -40,6 +40,8 @@ public class Config implements Parcelable {
     private boolean showTts = true;
     private AllowedDirection allowedDirection = DEFAULT_ALLOWED_DIRECTION;
     private Direction direction = DEFAULT_DIRECTION;
+    private boolean needExport=false;
+    private HtmlExportCallback htmlExportCallback;
 
     /**
      * Reading modes available
@@ -309,6 +311,22 @@ public class Config implements Parcelable {
                 ", allowedDirection=" + allowedDirection +
                 ", direction=" + direction +
                 '}';
+    }
+
+    public boolean isNeedExport() {
+        return needExport;
+    }
+
+    public void setNeedExport(boolean needExport) {
+        this.needExport = needExport;
+    }
+
+    public HtmlExportCallback getHtmlExportCallback() {
+        return htmlExportCallback;
+    }
+
+    public void setHtmlExportCallback(HtmlExportCallback htmlExportCallback) {
+        this.htmlExportCallback = htmlExportCallback;
     }
 }
 
