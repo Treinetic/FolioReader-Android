@@ -23,6 +23,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
@@ -77,7 +78,10 @@ import java.lang.ref.WeakReference
 class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControllerCallback,
     View.OnSystemUiVisibilityChangeListener {
 
+
     private var bookFileName: String? = null
+    private val iconColor = Color.parseColor("#FFFFFF")
+
 
     private var mFolioPageViewPager: DirectionalViewpager? = null
     private var actionBar: ActionBar? = null
@@ -115,6 +119,10 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
     private var density: Float = 0.toFloat()
     private var topActivity: Boolean? = null
     private var taskImportance: Int = 0
+
+    private var searcHide: Boolean = false
+    private lateinit var config: Config
+
 
     companion object {
 
@@ -241,6 +249,9 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        config = AppUtil.getSavedConfig(this)!!
+        config.isSearchHide = searcHide
+
 
         // Need to add when vector drawables support library is used.
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
@@ -307,7 +318,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         val config = AppUtil.getSavedConfig(applicationContext)!!
 
         val drawable = ContextCompat.getDrawable(this, R.drawable.ic_drawer)
-        UiUtil.setColorIntToDrawable(config.themeColor, drawable!!)
+        UiUtil.setColorIntToDrawable(iconColor, drawable!!)
         toolbar!!.navigationIcon = drawable
 
         if (config.isNightMode) {
@@ -338,9 +349,9 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         Log.v(LOG_TAG, "-> setDayMode")
 
         actionBar!!.setBackgroundDrawable(
-            ColorDrawable(ContextCompat.getColor(this, R.color.white))
+            ColorDrawable(ContextCompat.getColor(this, R.color.colorToolBar))
         )
-        toolbar!!.setTitleTextColor(ContextCompat.getColor(this, R.color.black))
+        toolbar!!.setTitleTextColor(ContextCompat.getColor(this, R.color.white))
     }
 
     override fun setNightMode() {
@@ -362,10 +373,13 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         menuInflater.inflate(R.menu.menu_main, menu)
 
         val config = AppUtil.getSavedConfig(applicationContext)!!
-        UiUtil.setColorIntToDrawable(config.themeColor, menu.findItem(R.id.itemSearch).icon)
-        UiUtil.setColorIntToDrawable(config.themeColor, menu.findItem(R.id.itemConfig).icon)
-        UiUtil.setColorIntToDrawable(config.themeColor, menu.findItem(R.id.itemTts).icon)
+        UiUtil.setColorIntToDrawable(iconColor, menu.findItem(R.id.itemSearch).icon)
+        UiUtil.setColorIntToDrawable(iconColor, menu.findItem(R.id.itemConfig).icon)
+        UiUtil.setColorIntToDrawable(iconColor, menu.findItem(R.id.itemTts).icon)
 
+        if (!config.isSearchHide) {
+            menu.findItem(R.id.itemSearch).isVisible = false
+        }
         if (!config.isShowTts)
             menu.findItem(R.id.itemTts).isVisible = false
 
@@ -430,11 +444,17 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up)
     }
 
-    fun showConfigBottomSheetDialogFragment() {
-        ConfigBottomSheetDialogFragment().show(
+    private fun showConfigBottomSheetDialogFragment() {
+        val config = ConfigBottomSheetDialogFragment()
+        config.changeIcons(this)
+        config.show(
             supportFragmentManager,
             ConfigBottomSheetDialogFragment.LOG_TAG
         )
+    }
+
+    fun ConfigBottomSheetDialogFragment.changeIcons(con: Context) {
+
     }
 
     fun showMediaController() {
@@ -1060,4 +1080,6 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
             }
         }
     }
+
+
 }

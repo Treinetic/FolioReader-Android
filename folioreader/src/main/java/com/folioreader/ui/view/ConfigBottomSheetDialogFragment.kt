@@ -3,6 +3,7 @@ package com.folioreader.ui.view
 import android.animation.Animator
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -41,6 +42,7 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
     private lateinit var config: Config
     private var isNightMode = false
     private lateinit var activityCallback: FolioActivityCallback
+    private val primaryColor = Color.parseColor("#FF5832")
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.view_config, container)
@@ -48,6 +50,7 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        hideFragmentElement()
 
         if (activity is FolioActivity)
             activityCallback = activity as FolioActivity
@@ -86,12 +89,12 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
         if (isNightMode) {
             view_config_ib_day_mode.isSelected = false
             view_config_ib_night_mode.isSelected = true
-            UiUtil.setColorIntToDrawable(config.themeColor, view_config_ib_night_mode.drawable)
+            UiUtil.setColorIntToDrawable(primaryColor, view_config_ib_night_mode.drawable)
             UiUtil.setColorResToDrawable(R.color.app_gray, view_config_ib_day_mode.drawable)
         } else {
             view_config_ib_day_mode.isSelected = true
             view_config_ib_night_mode.isSelected = false
-            UiUtil.setColorIntToDrawable(config.themeColor, view_config_ib_day_mode!!.drawable)
+            UiUtil.setColorIntToDrawable(primaryColor, view_config_ib_day_mode!!.drawable)
             UiUtil.setColorResToDrawable(R.color.app_gray, view_config_ib_night_mode.drawable)
         }
     }
@@ -112,7 +115,7 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
             setToolBarColor()
             setAudioPlayerBackground()
             UiUtil.setColorResToDrawable(R.color.app_gray, view_config_ib_night_mode.drawable)
-            UiUtil.setColorIntToDrawable(config.themeColor, view_config_ib_day_mode.drawable)
+            UiUtil.setColorIntToDrawable(primaryColor, view_config_ib_day_mode.drawable)
         }
 
         view_config_ib_night_mode.setOnClickListener {
@@ -121,7 +124,7 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
             view_config_ib_day_mode.isSelected = false
             view_config_ib_night_mode.isSelected = true
             UiUtil.setColorResToDrawable(R.color.app_gray, view_config_ib_day_mode.drawable)
-            UiUtil.setColorIntToDrawable(config.themeColor, view_config_ib_night_mode.drawable)
+            UiUtil.setColorIntToDrawable(primaryColor, view_config_ib_night_mode.drawable)
             setToolBarColor()
             setAudioPlayerBackground()
         }
@@ -154,7 +157,7 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
     private fun configFonts() {
 
         val colorStateList = UiUtil.getColorList(
-            config.themeColor,
+            primaryColor,
             ContextCompat.getColor(context!!, R.color.grey_color)
         )
         buttonVertical.setTextColor(colorStateList)
@@ -254,7 +257,7 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
     private fun configSeekBar() {
         val thumbDrawable = ContextCompat.getDrawable(activity!!, R.drawable.seekbar_thumb)
-        UiUtil.setColorIntToDrawable(config.themeColor, thumbDrawable)
+        UiUtil.setColorIntToDrawable(primaryColor, thumbDrawable)
         UiUtil.setColorResToDrawable(R.color.grey_color, view_config_font_size_seek_bar.progressDrawable)
         view_config_font_size_seek_bar.thumb = thumbDrawable
 
@@ -290,4 +293,15 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
             mediaControllerFragment.setNightMode()
         }
     }
+
+    //hide font change view
+    private fun hideFragmentElement() {
+        view_config_font_andada.visibility = View.GONE
+        view_config_font_lato.visibility = View.GONE
+        view_config_font_lora.visibility = View.GONE
+        view_config_font_raleway.visibility = View.GONE
+        view3.visibility = View.GONE
+    }
+
+
 }

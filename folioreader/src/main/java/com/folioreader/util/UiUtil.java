@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.Typeface;
@@ -296,7 +297,7 @@ public class UiUtil {
     public static GradientDrawable getShapeDrawable(@ColorInt int color) {
         GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setShape(GradientDrawable.RECTANGLE);
-        gradientDrawable.setStroke(pxToDp(2), color);
+        gradientDrawable.setStroke(pxToDp(2), Color.WHITE);
         gradientDrawable.setColor(color);
         gradientDrawable.setCornerRadius(pxToDp(3));
         return gradientDrawable;
