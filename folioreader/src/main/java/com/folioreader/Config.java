@@ -8,6 +8,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
 import androidx.core.content.ContextCompat;
 import org.json.JSONObject;
+import org.readium.r2.streamer.config.Configurations;
 
 /**
  * Configuration class for FolioReader.
@@ -39,7 +40,8 @@ public class Config implements Parcelable {
     private AllowedDirection allowedDirection = DEFAULT_ALLOWED_DIRECTION;
     private Direction direction = DEFAULT_DIRECTION;
     private boolean needExport=false;
-    private HtmlExportCallback htmlExportCallback;
+    private Configurations.Callback callback;
+    private String password;
 
     /**
      * Reading modes available
@@ -303,12 +305,21 @@ public class Config implements Parcelable {
         this.needExport = needExport;
     }
 
-    public HtmlExportCallback getHtmlExportCallback() {
-        return htmlExportCallback;
+
+    public Configurations.Callback getCallback() {
+        return callback;
     }
 
-    public void setHtmlExportCallback(HtmlExportCallback htmlExportCallback) {
-        this.htmlExportCallback = htmlExportCallback;
+    public void setCallback(Configurations.Callback callback) {
+        this.callback = callback;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
 

@@ -16,6 +16,7 @@
 package com.folioreader.android.sample;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -31,11 +32,10 @@ import com.folioreader.ui.base.OnSaveHighlight;
 import com.folioreader.util.AppUtil;
 import com.folioreader.util.OnHighlightListener;
 import com.folioreader.util.ReadLocatorListener;
+import org.jetbrains.annotations.NotNull;
+import tgio.rncryptor.RNCryptorNative;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,6 +66,7 @@ public class HomeActivity extends AppCompatActivity
                     config = new Config();
                 config.setAllowedDirection(Config.AllowedDirection.VERTICAL_AND_HORIZONTAL);
 
+
                 folioReader.setConfig(config, true)
                         .openBook(R.raw.accessible_epub_3);
             }
@@ -82,9 +83,26 @@ public class HomeActivity extends AppCompatActivity
                     config = new Config();
                 config.setAllowedDirection(Config.AllowedDirection.VERTICAL_AND_HORIZONTAL);
 
+                String folder = "whiteshark.treinetic.com.myapplication/epub_encrypted_2.epub";
+                String path = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + folder;
+
+                config.setNeedExport(true);
+                config.setPassword("WdXVzIlSy0yIgYzSJi4wIMjmoz-hNO0iQN3ijlLXeNx0ieTcC_lLVCTJ195dz-JFmUOuIiA3GY");
+                config.setCallback(new org.readium.r2.streamer.config.Configurations.Callback() {
+                    @NotNull
+                    @Override
+                    public String export(@NotNull String input) {
+                        RNCryptorNative cryptorNative = new RNCryptorNative();
+                        String password = FolioReader.get().getConfig().getPassword();
+                        String decrypted = cryptorNative.decrypt(input, password);
+                        if (decrypted == null) return input;
+                        return decrypted;
+                    }
+                });
+
                 folioReader.setReadLocator(readLocator);
                 folioReader.setConfig(config, true)
-                        .openBook("file:///android_asset/TheSilverChair.epub");
+                        .openBook(path);
             }
         });
     }
