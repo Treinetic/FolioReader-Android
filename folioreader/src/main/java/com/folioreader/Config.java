@@ -38,8 +38,9 @@ public class Config implements Parcelable {
     private boolean showTts = true;
     private AllowedDirection allowedDirection = DEFAULT_ALLOWED_DIRECTION;
     private Direction direction = DEFAULT_DIRECTION;
-    private boolean needExport=false;
+    private boolean needExport = false;
     private HtmlExportCallback htmlExportCallback;
+    private static String fontPath;
 
     /**
      * Reading modes available
@@ -310,6 +311,15 @@ public class Config implements Parcelable {
     public void setHtmlExportCallback(HtmlExportCallback htmlExportCallback) {
         this.htmlExportCallback = htmlExportCallback;
     }
+
+    public void setFontPath(String path){
+        fontPath = path;
+    }
+
+    public String getFontPath(){
+        return fontPath;
+    }
+
 }
 
 
