@@ -1,6 +1,7 @@
 package com.folioreader.ui.adapter;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,6 +58,15 @@ public class HighlightAdapter extends RecyclerView.Adapter<HighlightAdapter.High
         }, 10);
 
         holder.content.setText(Html.fromHtml(getItem(position).getContent()));
+
+        try {
+            Typeface type = Typeface.createFromFile(config.getFontPath());
+            holder.content.setTypeface(type);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         UiUtil.setBackColorToTextView(holder.content,
                 getItem(position).getType());
         holder.date.setText(AppUtil.formatDate(getItem(position).getDate()));

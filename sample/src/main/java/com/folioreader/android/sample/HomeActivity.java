@@ -82,7 +82,7 @@ public class HomeActivity extends AppCompatActivity
                 if (config == null)
                     config = new Config();
                 config.setAllowedDirection(Config.AllowedDirection.VERTICAL_AND_HORIZONTAL);
-
+/*
                 String folder = "whiteshark.treinetic.com.myapplication/epub_encrypted_2.epub";
                 String path = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + folder;
 
@@ -99,10 +99,12 @@ public class HomeActivity extends AppCompatActivity
                         return decrypted;
                     }
                 });
-
+*/
                 folioReader.setReadLocator(readLocator);
                 folioReader.setConfig(config, true)
-                        .openBook(path);
+//                        .openBook(path);
+                        .openBook("file:///android_asset/TheSilverChair.epub");
+
             }
         });
     }
