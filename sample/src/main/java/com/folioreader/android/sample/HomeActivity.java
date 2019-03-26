@@ -68,7 +68,7 @@ public class HomeActivity extends AppCompatActivity
 
 
                 folioReader.setConfig(config, true)
-                        .openBook(R.raw.accessible_epub_3);
+                        .openBook(R.raw.senehasaka);
             }
         });
 

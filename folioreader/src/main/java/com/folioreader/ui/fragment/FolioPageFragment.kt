@@ -58,6 +58,7 @@ import java.util.regex.Pattern
 class FolioPageFragment : Fragment(),
     HtmlTaskCallback, MediaControllerCallbacks, FolioWebView.SeekBarListener {
 
+
     companion object {
 
         @JvmField

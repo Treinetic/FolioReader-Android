@@ -24,6 +24,7 @@ public class ContentHighlightActivity extends AppCompatActivity {
     private boolean mIsNightMode;
     private Config mConfig;
     private Publication publication;
+    private int primaryColor = Color.parseColor("#FF5832");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +44,7 @@ public class ContentHighlightActivity extends AppCompatActivity {
 
     private void initViews() {
 
-        UiUtil.setColorIntToDrawable(mConfig.getThemeColor(), ((ImageView) findViewById(R.id.btn_close)).getDrawable());
+        UiUtil.setColorIntToDrawable(Color.WHITE, ((ImageView) findViewById(R.id.btn_close)).getDrawable());
         findViewById(R.id.layout_content_highlights).setBackgroundDrawable(UiUtil.getShapeDrawable(mConfig.getThemeColor()));
 
         if (mIsNightMode) {
@@ -54,10 +55,11 @@ public class ContentHighlightActivity extends AppCompatActivity {
             ((TextView) findViewById(R.id.btn_highlights)).setTextColor(UiUtil.getColorList(ContextCompat.getColor(this, R.color.black), mConfig.getThemeColor()));
 
         } else {
-            ((TextView) findViewById(R.id.btn_contents)).setTextColor(UiUtil.getColorList(ContextCompat.getColor(this, R.color.white), mConfig.getThemeColor()));
-            ((TextView) findViewById(R.id.btn_highlights)).setTextColor(UiUtil.getColorList(ContextCompat.getColor(this, R.color.white), mConfig.getThemeColor()));
-            findViewById(R.id.btn_contents).setBackgroundDrawable(UiUtil.createStateDrawable(mConfig.getThemeColor(), ContextCompat.getColor(this, R.color.white)));
-            findViewById(R.id.btn_highlights).setBackgroundDrawable(UiUtil.createStateDrawable(mConfig.getThemeColor(), ContextCompat.getColor(this, R.color.white)));
+            findViewById(R.id.toolbar).setBackgroundColor(getResources().getColor(R.color.colorToolBar));
+            ((TextView) findViewById(R.id.btn_contents)).setTextColor(UiUtil.getColorList(ContextCompat.getColor(this, R.color.colorToolBar), Color.WHITE));
+            ((TextView) findViewById(R.id.btn_highlights)).setTextColor(UiUtil.getColorList(ContextCompat.getColor(this, R.color.colorToolBar), Color.WHITE));
+            findViewById(R.id.btn_contents).setBackgroundDrawable(UiUtil.createStateDrawable(Color.WHITE, ContextCompat.getColor(this, R.color.colorToolBar)));
+            findViewById(R.id.btn_highlights).setBackgroundDrawable(UiUtil.createStateDrawable(Color.WHITE, ContextCompat.getColor(this, R.color.colorToolBar)));
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

@@ -1,6 +1,7 @@
 package com.folioreader;
 
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
@@ -22,17 +23,18 @@ public class Config implements Parcelable {
     public static final String CONFIG_FONT = "font";
     public static final String CONFIG_FONT_SIZE = "font_size";
     public static final String CONFIG_IS_NIGHT_MODE = "is_night_mode";
+    public static final String CONFIG_IS_HIDE_SEARCH = "is_hide_search";
     public static final String CONFIG_THEME_COLOR_INT = "theme_color_int";
     public static final String CONFIG_IS_TTS = "is_tts";
     public static final String CONFIG_ALLOWED_DIRECTION = "allowed_direction";
     public static final String CONFIG_DIRECTION = "direction";
     private static final AllowedDirection DEFAULT_ALLOWED_DIRECTION = AllowedDirection.ONLY_VERTICAL;
     private static final Direction DEFAULT_DIRECTION = Direction.VERTICAL;
-    private static final int DEFAULT_THEME_COLOR_INT =
-            ContextCompat.getColor(AppContext.get(), R.color.default_theme_accent_color);
+    private static final int DEFAULT_THEME_COLOR_INT = ContextCompat.getColor(AppContext.get(), R.color.colorPrimary);
 
     private int font = 3;
     private int fontSize = 2;
+    private boolean searchHide;
     private boolean nightMode;
     @ColorInt
     private int themeColor = DEFAULT_THEME_COLOR_INT;
@@ -81,6 +83,7 @@ public class Config implements Parcelable {
         dest.writeInt(font);
         dest.writeInt(fontSize);
         dest.writeByte((byte) (nightMode ? 1 : 0));
+        dest.writeByte((byte) (searchHide ? 1 : 0));
         dest.writeInt(themeColor);
         dest.writeByte((byte) (showTts ? 1 : 0));
         dest.writeString(allowedDirection.toString());
@@ -91,6 +94,7 @@ public class Config implements Parcelable {
         font = in.readInt();
         fontSize = in.readInt();
         nightMode = in.readByte() != 0;
+        searchHide = in.readByte() != 0;
         themeColor = in.readInt();
         showTts = in.readByte() != 0;
         allowedDirection = getAllowedDirectionFromString(LOG_TAG, in.readString());
@@ -104,6 +108,7 @@ public class Config implements Parcelable {
         font = jsonObject.optInt(CONFIG_FONT);
         fontSize = jsonObject.optInt(CONFIG_FONT_SIZE);
         nightMode = jsonObject.optBoolean(CONFIG_IS_NIGHT_MODE);
+        searchHide = jsonObject.optBoolean(CONFIG_IS_HIDE_SEARCH);
         themeColor = getValidColorInt(jsonObject.optInt(CONFIG_THEME_COLOR_INT));
         showTts = jsonObject.optBoolean(CONFIG_IS_TTS);
         allowedDirection = getAllowedDirectionFromString(LOG_TAG,
@@ -162,12 +167,23 @@ public class Config implements Parcelable {
     }
 
     public boolean isNightMode() {
+
         return nightMode;
     }
 
     public Config setNightMode(boolean nightMode) {
         this.nightMode = nightMode;
         return this;
+    }
+
+    public boolean isSearchHide() {
+        return searchHide;
+    }
+
+    public Config setSearchHide(boolean searchHide) {
+        this.searchHide = searchHide;
+        return this;
+
     }
 
     @ColorInt
@@ -182,7 +198,8 @@ public class Config implements Parcelable {
 
     @ColorInt
     public int getThemeColor() {
-        return themeColor;
+        return Color.parseColor("#FF5832");
+
     }
 
     public Config setThemeColorRes(@ColorRes int colorResId) {
@@ -292,6 +309,7 @@ public class Config implements Parcelable {
                 "font=" + font +
                 ", fontSize=" + fontSize +
                 ", nightMode=" + nightMode +
+                ", searchHide=" + searchHide +
                 ", themeColor=" + themeColor +
                 ", showTts=" + showTts +
                 ", allowedDirection=" + allowedDirection +
