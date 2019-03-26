@@ -44,7 +44,7 @@ public class HtmlTask extends AsyncTask<String, Void, String> {
             }
             if (stringBuilder.length() > 0)
                 stringBuilder.deleteCharAt(stringBuilder.length() - 1);
-            return exportHtml(stringBuilder.toString());
+            return stringBuilder.toString();
         } catch (IOException e) {
             Log.e(TAG, "HtmlTask failed", e);
         }
@@ -62,17 +62,17 @@ public class HtmlTask extends AsyncTask<String, Void, String> {
     }
 
 
-    private String exportHtml(String inputHtml) throws IOException {
-
-        if (FolioReader.get().getConfig().isNeedExport()) {
-            Log.d(TAG, "Html Export required");
-            if (FolioReader.get().getConfig().getHtmlExportCallback() == null)
-                throw new IOException("HtmlExportCallback null");
-            return FolioReader.get().getConfig().getHtmlExportCallback().exportHtml(inputHtml);
-        }
-        Log.d(TAG, "Html Export NOT required");
-        return inputHtml;
-    }
+//    private String exportHtml(String inputHtml) throws IOException {
+//
+//        if (FolioReader.get().getConfig().isNeedExport()) {
+//            Log.d(TAG, "Html Export required");
+//            if (FolioReader.get().getConfig().getHtmlExportCallback() == null)
+//                throw new IOException("HtmlExportCallback null");
+//            return FolioReader.get().getConfig().getHtmlExportCallback().exportHtml(inputHtml);
+//        }
+//        Log.d(TAG, "Html Export NOT required");
+//        return inputHtml;
+//    }
 
 
 }

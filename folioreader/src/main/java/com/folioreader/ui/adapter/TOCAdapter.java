@@ -2,6 +2,7 @@ package com.folioreader.ui.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -142,6 +143,15 @@ public class TOCAdapter extends MultiLevelExpIndListAdapter {
             });
 
             sectionTitle = (TextView) itemView.findViewById(R.id.section_title);
+            try {
+                Typeface type = Typeface.createFromFile(mConfig.getFontPath());
+                sectionTitle.setTypeface(type);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

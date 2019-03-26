@@ -41,6 +41,7 @@ android {
         exclude 'META-INF/dependencies.txt'
         exclude 'META-INF/LGPL2.1'
         exclude 'META-INF/services/javax.annotation.processing.Processor'
+        exclude 'META-INF/TrFolioReader_debug.kotlin_module'
     }
 
     lintOptions {
@@ -57,11 +58,14 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
 
     implementation project(':folioreader')
+    implementation project(':r2-shared')
+    implementation project(path: ':r2-streamer')
     //implementation "com.folioreader:folioreader:$versions.folioreaderSdk"
 
     implementation "com.fasterxml.jackson.core:jackson-core:$versions.jackson"
     implementation "com.fasterxml.jackson.core:jackson-annotations:$versions.jackson"
     implementation "com.fasterxml.jackson.core:jackson-databind:$versions.jackson"
     implementation "com.fasterxml.jackson.module:jackson-module-kotlin:$versions.jackson"
+    implementation "com.github.tgio:rncryptor-native:0.0.9"
 
 }

@@ -69,6 +69,7 @@ import com.folioreader.util.UiUtil
 import org.greenrobot.eventbus.EventBus
 import org.readium.r2.shared.Link
 import org.readium.r2.shared.Publication
+import org.readium.r2.streamer.config.Configurations
 import org.readium.r2.streamer.parser.CbzParser
 import org.readium.r2.streamer.parser.EpubParser
 import org.readium.r2.streamer.parser.PubBox
@@ -508,7 +509,11 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         portNumber = intent.getIntExtra(FolioReader.EXTRA_PORT_NUMBER, Constants.DEFAULT_PORT_NUMBER)
         portNumber = AppUtil.getAvailablePortNumber(portNumber)
 
+
+
         r2StreamerServer = Server(portNumber)
+        // setConfiguration for for R2 Streamer
+        setR2StreamerConfigurations()
         r2StreamerServer!!.addEpub(
             pubBox!!.publication, pubBox!!.container,
             "/" + bookFileName!!, null
@@ -517,6 +522,11 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         r2StreamerServer!!.start()
 
         FolioReader.initRetrofit(streamerUrl)
+    }
+
+    private fun setR2StreamerConfigurations() {
+        Configurations.getInsance().callback = FolioReader.get().config.callback
+        Configurations.getInsance().needExport = FolioReader.get().config.isNeedExport
     }
 
     private fun onBookInitFailure() {

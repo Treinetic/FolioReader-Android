@@ -1,0 +1,6 @@
+[submodule "folioreader/r2-streamer-kotlin"]
+	path = folioreader/r2-streamer-kotlin
+	url = https://github.com/codetoart/r2-streamer-kotlin.git
+[submodule "r2-shared-kotlin"]
+	path = r2-shared-kotlin
+	url = https://github.com/codetoart/r2-shared-kotlin.git
