@@ -116,9 +116,8 @@ dependencies {
 //        changing = true
 //    }
 
-
-    implementation project(':r2-shared')
-    implementation project(':r2-streamer')
+    api project(':r2-shared')
+    api project(':r2-streamer')
 
     // Only ReflectionUtils in Spring framework is used
     implementation 'org.springframework:spring-core:4.3.19.RELEASE'
