@@ -34,7 +34,7 @@ public class Config implements Parcelable {
 
     private int font = 3;
     private int fontSize = 2;
-    private boolean searchHide;
+    private boolean searchHide=false;
     private boolean nightMode;
     @ColorInt
     private int themeColor = DEFAULT_THEME_COLOR_INT;

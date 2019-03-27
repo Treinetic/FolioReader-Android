@@ -250,8 +250,6 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        config = AppUtil.getSavedConfig(this)!!
-        config.isSearchHide = searcHide
 
 
         // Need to add when vector drawables support library is used.
