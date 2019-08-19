@@ -525,6 +525,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
     private fun setR2StreamerConfigurations() {
         Configurations.getInsance().callback = FolioReader.get().config.callback
         Configurations.getInsance().needExport = FolioReader.get().config.isNeedExport
+        Configurations.getInsance().imageListener =FolioReader.get().config.imageClickListener
     }
 
     private fun onBookInitFailure() {

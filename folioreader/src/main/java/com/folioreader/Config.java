@@ -46,6 +46,7 @@ public class Config implements Parcelable {
     private Configurations.Callback callback;
     private String password;
     private static String fontPath;
+    private Configurations.ImageClickListener imageClickListener;
 
     /**
      * Reading modes available
@@ -350,6 +351,13 @@ public class Config implements Parcelable {
         return fontPath;
     }
 
+    public Configurations.ImageClickListener getImageClickListener() {
+        return imageClickListener;
+    }
+
+    public void setImageClickListener(Configurations.ImageClickListener imageClickListener) {
+        this.imageClickListener = imageClickListener;
+    }
 }
 
 

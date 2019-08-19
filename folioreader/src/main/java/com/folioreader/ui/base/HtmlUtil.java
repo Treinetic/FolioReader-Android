@@ -100,7 +100,7 @@ public final class HtmlUtil {
             default:
                 break;
         }
-
+        htmlContent = htmlContent.replace("<img", "<img onclick=\"clickImg(this)\"");
         htmlContent = htmlContent.replace("<html", "<html class=\"" + classes + "\"" +
                 " onclick=\"onClickHtml()\"");
         return htmlContent;

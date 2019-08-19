@@ -938,3 +938,8 @@ function rectContains(a, b) {
         // now check for containment
         && a.left <= b.left && a.top <= b.top && a.right >= b.right && a.bottom >= b.bottom;
 }
+
+function clickImg(img){
+ console.debug("-> clickImg "+img.src);
+FolioPageFragment.clickImage(img.src)
+}
