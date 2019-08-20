@@ -881,7 +881,8 @@ class FolioPageFragment : Fragment(),
     fun clickImage(url: String) {
         Log.d(LOG_TAG, "Clicked Image : $url")
         FolioReader.get()?.config?.imageClickListener?.let {
-            it.onImageClick(url)
+            Log.d(LOG_TAG, "Has callback imageClickListener")
+            it.onImageClick(url,requireContext())
         }
 
     }
