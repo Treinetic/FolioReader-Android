@@ -24,6 +24,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.GestureDetectorCompat
 import com.folioreader.Config
 import com.folioreader.Constants
+import com.folioreader.FolioReader
 import com.folioreader.R
 import com.folioreader.model.DisplayUnit
 import com.folioreader.model.HighLight
@@ -156,13 +157,23 @@ class FolioWebView : WebView {
 
     private inner class HorizontalGestureListener : GestureDetector.SimpleOnGestureListener() {
 
-        override fun onScroll(e1: MotionEvent?, e2: MotionEvent?, distanceX: Float, distanceY: Float): Boolean {
+        override fun onScroll(
+            e1: MotionEvent?,
+            e2: MotionEvent?,
+            distanceX: Float,
+            distanceY: Float
+        ): Boolean {
             //Log.d(LOG_TAG, "-> onScroll -> e1 = " + e1 + ", e2 = " + e2 + ", distanceX = " + distanceX + ", distanceY = " + distanceY);
             lastScrollType = LastScrollType.USER
             return false
         }
 
-        override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float, velocityY: Float): Boolean {
+        override fun onFling(
+            e1: MotionEvent?,
+            e2: MotionEvent?,
+            velocityX: Float,
+            velocityY: Float
+        ): Boolean {
             //Log.d(LOG_TAG, "-> onFling -> e1 = " + e1 + ", e2 = " + e2 + ", velocityX = " + velocityX + ", velocityY = " + velocityY);
 
             if (!webViewPager.isScrolling) {
@@ -212,13 +223,23 @@ class FolioWebView : WebView {
 
     private inner class VerticalGestureListener : GestureDetector.SimpleOnGestureListener() {
 
-        override fun onScroll(e1: MotionEvent?, e2: MotionEvent?, distanceX: Float, distanceY: Float): Boolean {
+        override fun onScroll(
+            e1: MotionEvent?,
+            e2: MotionEvent?,
+            distanceX: Float,
+            distanceY: Float
+        ): Boolean {
             //Log.v(LOG_TAG, "-> onScroll -> e1 = " + e1 + ", e2 = " + e2 + ", distanceX = " + distanceX + ", distanceY = " + distanceY);
             lastScrollType = LastScrollType.USER
             return false
         }
 
-        override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float, velocityY: Float): Boolean {
+        override fun onFling(
+            e1: MotionEvent?,
+            e2: MotionEvent?,
+            velocityX: Float,
+            velocityY: Float
+        ): Boolean {
             //Log.v(LOG_TAG, "-> onFling -> e1 = " + e1 + ", e2 = " + e2 + ", velocityX = " + velocityX + ", velocityY = " + velocityY);
             lastScrollType = LastScrollType.USER
             return false
@@ -227,7 +248,11 @@ class FolioWebView : WebView {
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(
+        context,
+        attrs,
+        defStyleAttr
+    )
 
     private fun init() {
         Log.v(LOG_TAG, "-> init")
@@ -292,14 +317,20 @@ class FolioWebView : WebView {
             loadUrl("javascript:deleteThisHighlight()")
         }
 
+        if (!FolioReader.get().config.isEnableCopy) viewTextSelection.copySelection.visibility =
+            View.GONE
         viewTextSelection.copySelection.setOnClickListener {
             dismissPopupWindow()
             loadUrl("javascript:onTextSelectionItemClicked(${it.id})")
         }
+        if (!FolioReader.get().config.isEnableshare) viewTextSelection.shareSelection.visibility =
+            View.GONE
         viewTextSelection.shareSelection.setOnClickListener {
             dismissPopupWindow()
             loadUrl("javascript:onTextSelectionItemClicked(${it.id})")
         }
+        if (!FolioReader.get().config.isEnableDefine) viewTextSelection.defineSelection.visibility =
+            View.GONE
         viewTextSelection.defineSelection.setOnClickListener {
             dismissPopupWindow()
             loadUrl("javascript:onTextSelectionItemClicked(${it.id})")
@@ -315,7 +346,8 @@ class FolioWebView : WebView {
             R.id.copySelection -> {
                 Log.v(LOG_TAG, "-> onTextSelectionItemClicked -> copySelection -> $selectedText")
                 UiUtil.copyToClipboard(context, selectedText)
-                Toast.makeText(context, context.getString(R.string.copied), Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, context.getString(R.string.copied), Toast.LENGTH_SHORT)
+                    .show()
             }
             R.id.shareSelection -> {
                 Log.v(LOG_TAG, "-> onTextSelectionItemClicked -> shareSelection -> $selectedText")
@@ -580,7 +612,8 @@ class FolioWebView : WebView {
 
         if (Build.VERSION.SDK_INT < 23) {
             val folioActivityRef: WeakReference<FolioActivity> = folioActivityCallback.activity
-            val mWindowManagerField = ReflectionUtils.findField(FolioActivity::class.java, "mWindowManager")
+            val mWindowManagerField =
+                ReflectionUtils.findField(FolioActivity::class.java, "mWindowManager")
             mWindowManagerField.isAccessible = true
             val mWindowManager = mWindowManagerField.get(folioActivityRef.get())
 
@@ -596,7 +629,8 @@ class FolioWebView : WebView {
             val config = AppUtil.getSavedConfig(context)!!
 
             for (view in mViews) {
-                val handleViewClass = Class.forName("com.android.org.chromium.content.browser.input.HandleView")
+                val handleViewClass =
+                    Class.forName("com.android.org.chromium.content.browser.input.HandleView")
 
                 if (handleViewClass.isInstance(view)) {
                     val mDrawableField = ReflectionUtils.findField(handleViewClass, "mDrawable")
@@ -608,7 +642,8 @@ class FolioWebView : WebView {
 
         } else {
             val folioActivityRef: WeakReference<FolioActivity> = folioActivityCallback.activity
-            val mWindowManagerField = ReflectionUtils.findField(FolioActivity::class.java, "mWindowManager")
+            val mWindowManagerField =
+                ReflectionUtils.findField(FolioActivity::class.java, "mWindowManager")
             mWindowManagerField.isAccessible = true
             val mWindowManager = mWindowManagerField.get(folioActivityRef.get())
 
@@ -624,7 +659,8 @@ class FolioWebView : WebView {
             val config = AppUtil.getSavedConfig(context)!!
 
             for (view in mViews) {
-                val popupDecorViewClass = Class.forName("android.widget.PopupWindow\$PopupDecorView")
+                val popupDecorViewClass =
+                    Class.forName("android.widget.PopupWindow\$PopupDecorView")
 
                 if (!popupDecorViewClass.isInstance(view))
                     continue
@@ -636,7 +672,10 @@ class FolioWebView : WebView {
                 //val pathClassLoader = PathClassLoader("/system/app/Chrome/Chrome.apk", ClassLoader.getSystemClassLoader())
 
                 val pathClassLoader =
-                    PathClassLoader("/system/app/Chrome/Chrome.apk", folioActivityRef.get()?.classLoader)
+                    PathClassLoader(
+                        "/system/app/Chrome/Chrome.apk",
+                        folioActivityRef.get()?.classLoader
+                    )
 
                 val popupTouchHandleDrawableClass = Class.forName(
                     "org.chromium.android_webview.PopupTouchHandleDrawable",
@@ -646,7 +685,8 @@ class FolioWebView : WebView {
                 //if (!popupTouchHandleDrawableClass.isInstance(mChildren[0]))
                 //    continue
 
-                val mDrawableField = ReflectionUtils.findField(popupTouchHandleDrawableClass, "mDrawable")
+                val mDrawableField =
+                    ReflectionUtils.findField(popupTouchHandleDrawableClass, "mDrawable")
                 mDrawableField.isAccessible = true
                 val mDrawable = mDrawableField.get(mChildren[0]) as Drawable
                 UiUtil.setColorIntToDrawable(config.themeColor, mDrawable)

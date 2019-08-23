@@ -47,6 +47,9 @@ public class Config implements Parcelable {
     private String password;
     private static String fontPath;
     private Configurations.ImageClickListener imageClickListener;
+    private boolean enableCopy=false;
+    private boolean enableshare=false;
+    private boolean enableDefine=false;
 
     /**
      * Reading modes available
@@ -357,6 +360,30 @@ public class Config implements Parcelable {
 
     public void setImageClickListener(Configurations.ImageClickListener imageClickListener) {
         this.imageClickListener = imageClickListener;
+    }
+
+    public boolean isEnableCopy() {
+        return enableCopy;
+    }
+
+    public void setEnableCopy(boolean enableCopy) {
+        this.enableCopy = enableCopy;
+    }
+
+    public boolean isEnableshare() {
+        return enableshare;
+    }
+
+    public void setEnableshare(boolean enableshare) {
+        this.enableshare = enableshare;
+    }
+
+    public boolean isEnableDefine() {
+        return enableDefine;
+    }
+
+    public void setEnableDefine(boolean enableDefine) {
+        this.enableDefine = enableDefine;
     }
 }
 
