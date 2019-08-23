@@ -601,8 +601,9 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         window.decorView.setOnSystemUiVisibilityChangeListener(this)
 
         // Deliberately Hidden and shown to make activity contents lay out behind SystemUI
-        hideSystemUI()
         showSystemUI()
+        hideSystemUI()
+
 
         distractionFreeMode = savedInstanceState != null && savedInstanceState.getBoolean(BUNDLE_DISTRACTION_FREE_MODE)
     }
