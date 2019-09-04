@@ -108,7 +108,7 @@ public class MediaController {
                     mTextToSpeech.setLanguage(Locale.UK);
                     mTextToSpeech.setSpeechRate(0.70f);
                 }
-
+                if(mTextToSpeech==null)return;
                 mTextToSpeech.setOnUtteranceCompletedListener(
                         new TextToSpeech.OnUtteranceCompletedListener() {
                             @Override
