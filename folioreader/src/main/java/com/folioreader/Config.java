@@ -5,9 +5,11 @@ import android.graphics.Color;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
+
 import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
 import androidx.core.content.ContextCompat;
+
 import org.json.JSONObject;
 import org.readium.r2.streamer.config.Configurations;
 
@@ -34,7 +36,7 @@ public class Config implements Parcelable {
 
     private int font = 3;
     private int fontSize = 2;
-    private boolean searchHide=false;
+    private boolean searchHide = false;
     private boolean nightMode;
     @ColorInt
     private int themeColor = DEFAULT_THEME_COLOR_INT;
@@ -42,14 +44,15 @@ public class Config implements Parcelable {
     private AllowedDirection allowedDirection = DEFAULT_ALLOWED_DIRECTION;
     private Direction direction = DEFAULT_DIRECTION;
 
-    private boolean needExport=false;
+    private boolean needExport = false;
     private Configurations.Callback callback;
     private String password;
     private static String fontPath;
     private Configurations.ImageClickListener imageClickListener;
-    private boolean enableCopy=false;
-    private boolean enableshare=false;
-    private boolean enableDefine=false;
+    private boolean enableCopy = false;
+    private boolean enableshare = false;
+    private boolean enableDefine = false;
+    private boolean enableHighLight = true;
 
     /**
      * Reading modes available
@@ -346,11 +349,11 @@ public class Config implements Parcelable {
         this.password = password;
     }
 
-    public void setFontPath(String path){
+    public void setFontPath(String path) {
         fontPath = path;
     }
 
-    public String getFontPath(){
+    public String getFontPath() {
         return fontPath;
     }
 
@@ -384,6 +387,14 @@ public class Config implements Parcelable {
 
     public void setEnableDefine(boolean enableDefine) {
         this.enableDefine = enableDefine;
+    }
+
+    public boolean isEnableHighLight() {
+        return enableHighLight;
+    }
+
+    public void setEnableHighLight(boolean enableHighLight) {
+        this.enableHighLight = enableHighLight;
     }
 }
 

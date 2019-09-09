@@ -806,7 +806,7 @@ class FolioWebView : WebView {
     private fun showTextSelectionPopup() {
         Log.v(LOG_TAG, "-> showTextSelectionPopup")
         Log.d(LOG_TAG, "-> showTextSelectionPopup -> To be laid out popupRect -> $popupRect")
-
+        if (!FolioReader.get().config.isEnableHighLight) return
         popupWindow.dismiss()
         oldScrollX = scrollX
         oldScrollY = scrollY
