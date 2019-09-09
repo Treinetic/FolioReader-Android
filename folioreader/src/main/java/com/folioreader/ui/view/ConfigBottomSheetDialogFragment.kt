@@ -81,9 +81,9 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
         selectFont(config.font, false)
         isNightMode = config.isNightMode
         if (isNightMode) {
-            container.setBackgroundColor(ContextCompat.getColor(context!!, R.color.night))
+            container?.setBackgroundColor(ContextCompat.getColor(context!!, R.color.night))
         } else {
-            container.setBackgroundColor(ContextCompat.getColor(context!!, R.color.white))
+            container?.setBackgroundColor(ContextCompat.getColor(context!!, R.color.white))
         }
 
         if (isNightMode) {
@@ -207,7 +207,7 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
         colorAnimation.addUpdateListener { animator ->
             val value = animator.animatedValue as Int
-            container.setBackgroundColor(value)
+            container?.setBackgroundColor(value)
         }
 
         colorAnimation.addListener(object : Animator.AnimatorListener {

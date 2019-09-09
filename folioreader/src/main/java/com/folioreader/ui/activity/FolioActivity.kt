@@ -501,9 +501,10 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
             }
             else -> {
                 null
+
             }
         }
-
+        if (pubBox==null){ onBackPressed();return }
         portNumber = intent.getIntExtra(FolioReader.EXTRA_PORT_NUMBER, Constants.DEFAULT_PORT_NUMBER)
         portNumber = AppUtil.getAvailablePortNumber(portNumber)
 

@@ -316,21 +316,23 @@ class FolioWebView : WebView {
             loadUrl("javascript:clearSelection()")
             loadUrl("javascript:deleteThisHighlight()")
         }
+        FolioReader.get()?.config?.let {
+            if (!FolioReader.get().config.isEnableCopy) viewTextSelection.copySelection.visibility =
+                View.GONE
+            viewTextSelection.copySelection.setOnClickListener {
+                dismissPopupWindow()
+                loadUrl("javascript:onTextSelectionItemClicked(${it.id})")
+            }
+            if (!FolioReader.get().config.isEnableshare) viewTextSelection.shareSelection.visibility =
+                View.GONE
+            viewTextSelection.shareSelection.setOnClickListener {
+                dismissPopupWindow()
+                loadUrl("javascript:onTextSelectionItemClicked(${it.id})")
+            }
+            if (!FolioReader.get().config.isEnableDefine) viewTextSelection.defineSelection.visibility =
+                View.GONE
+        }
 
-        if (!FolioReader.get().config.isEnableCopy) viewTextSelection.copySelection.visibility =
-            View.GONE
-        viewTextSelection.copySelection.setOnClickListener {
-            dismissPopupWindow()
-            loadUrl("javascript:onTextSelectionItemClicked(${it.id})")
-        }
-        if (!FolioReader.get().config.isEnableshare) viewTextSelection.shareSelection.visibility =
-            View.GONE
-        viewTextSelection.shareSelection.setOnClickListener {
-            dismissPopupWindow()
-            loadUrl("javascript:onTextSelectionItemClicked(${it.id})")
-        }
-        if (!FolioReader.get().config.isEnableDefine) viewTextSelection.defineSelection.visibility =
-            View.GONE
         viewTextSelection.defineSelection.setOnClickListener {
             dismissPopupWindow()
             loadUrl("javascript:onTextSelectionItemClicked(${it.id})")
