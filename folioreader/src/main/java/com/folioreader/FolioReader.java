@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Parcelable;
+import android.util.Log;
+
 import androidx.annotation.Nullable;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import com.folioreader.model.HighLight;
@@ -34,12 +36,13 @@ import java.util.concurrent.TimeUnit;
 public class FolioReader {
 
     @SuppressLint("StaticFieldLeak")
-    private static FolioReader singleton = null;
+        private static FolioReader singleton = null;
 
     public static final String EXTRA_BOOK_ID = "com.folioreader.extra.BOOK_ID";
     public static final String EXTRA_READ_LOCATOR = "com.folioreader.extra.READ_LOCATOR";
     public static final String EXTRA_PORT_NUMBER = "com.folioreader.extra.PORT_NUMBER";
     public static final String ACTION_SAVE_READ_LOCATOR = "com.folioreader.action.SAVE_READ_LOCATOR";
+    public static final String ACTION_SAVE_READ_LOCATOR_BOOKMARK = "com.folioreader.action.SAVE_READ_LOCATOR_BOOKMARK";
     public static final String ACTION_CLOSE_FOLIOREADER = "com.folioreader.action.CLOSE_FOLIOREADER";
     public static final String ACTION_FOLIOREADER_CLOSED = "com.folioreader.action.FOLIOREADER_CLOSED";
 
@@ -83,10 +86,10 @@ public class FolioReader {
     private BroadcastReceiver readLocatorReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-
+            Log.d("FolioReader","readLocatorReceiver called");
             ReadLocator readLocator =
                     (ReadLocator) intent.getSerializableExtra(FolioReader.EXTRA_READ_LOCATOR);
-            if (readLocatorListener != null)
+            if (readLocatorListener != null && FolioReader.get().config.isAutoSaveReadLocator())
                 readLocatorListener.saveReadLocator(readLocator);
         }
     };
@@ -128,6 +131,8 @@ public class FolioReader {
                 new IntentFilter(ACTION_SAVE_READ_LOCATOR));
         localBroadcastManager.registerReceiver(closedReceiver,
                 new IntentFilter(ACTION_FOLIOREADER_CLOSED));
+        localBroadcastManager.registerReceiver(bookMarkReceiver,
+                new IntentFilter(ACTION_SAVE_READ_LOCATOR_BOOKMARK));
     }
 
     public FolioReader openBook(String assetOrSdcardPath) {
@@ -300,4 +305,15 @@ public class FolioReader {
         localBroadcastManager.unregisterReceiver(readLocatorReceiver);
         localBroadcastManager.unregisterReceiver(closedReceiver);
     }
+
+    private BroadcastReceiver bookMarkReceiver= new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.d("FolioReader","bookMarkReceiver called");
+            ReadLocator readLocator =
+                    (ReadLocator) intent.getSerializableExtra(FolioReader.EXTRA_READ_LOCATOR);
+            if (readLocatorListener != null && !FolioReader.get().config.isAutoSaveReadLocator())
+                readLocatorListener.saveReadLocator(readLocator);
+        }
+    };
 }
