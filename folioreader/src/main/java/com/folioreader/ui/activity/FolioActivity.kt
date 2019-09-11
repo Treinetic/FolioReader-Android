@@ -1125,6 +1125,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         FolioReader.get().config?.let {
             isAutoSave = it.isAutoSaveReadLocator
         }
+
         if (isAutoSave) return
         var folioPageFragment: FolioPageFragment? = currentFragment ?: return
         entryReadLocator = folioPageFragment!!.getLastReadLocator()

@@ -10,6 +10,7 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
 import com.folioreader.model.HighLight;
 import com.folioreader.model.HighlightImpl;
 import com.folioreader.model.locators.ReadLocator;
@@ -19,8 +20,10 @@ import com.folioreader.network.R2StreamerApi;
 import com.folioreader.ui.activity.FolioActivity;
 import com.folioreader.ui.base.OnSaveHighlight;
 import com.folioreader.ui.base.SaveReceivedHighlightTask;
+import com.folioreader.util.BookMarkListener;
 import com.folioreader.util.OnHighlightListener;
 import com.folioreader.util.ReadLocatorListener;
+
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -36,7 +39,7 @@ import java.util.concurrent.TimeUnit;
 public class FolioReader {
 
     @SuppressLint("StaticFieldLeak")
-        private static FolioReader singleton = null;
+    private static FolioReader singleton = null;
 
     public static final String EXTRA_BOOK_ID = "com.folioreader.extra.BOOK_ID";
     public static final String EXTRA_READ_LOCATOR = "com.folioreader.extra.READ_LOCATOR";
@@ -54,6 +57,7 @@ public class FolioReader {
     private ReadLocatorListener readLocatorListener;
     private OnClosedListener onClosedListener;
     private ReadLocator readLocator;
+    private BookMarkListener bookMarkListener;
 
 
     @Nullable
@@ -86,7 +90,7 @@ public class FolioReader {
     private BroadcastReceiver readLocatorReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.d("FolioReader","readLocatorReceiver called");
+            Log.d("FolioReader", "readLocatorReceiver called");
             ReadLocator readLocator =
                     (ReadLocator) intent.getSerializableExtra(FolioReader.EXTRA_READ_LOCATOR);
             if (readLocatorListener != null && FolioReader.get().config.isAutoSaveReadLocator())
@@ -306,14 +310,24 @@ public class FolioReader {
         localBroadcastManager.unregisterReceiver(closedReceiver);
     }
 
-    private BroadcastReceiver bookMarkReceiver= new BroadcastReceiver() {
+    private BroadcastReceiver bookMarkReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.d("FolioReader","bookMarkReceiver called");
+            Log.d("FolioReader", "bookMarkReceiver called");
             ReadLocator readLocator =
                     (ReadLocator) intent.getSerializableExtra(FolioReader.EXTRA_READ_LOCATOR);
-            if (readLocatorListener != null && !FolioReader.get().config.isAutoSaveReadLocator())
-                readLocatorListener.saveReadLocator(readLocator);
+            if (bookMarkListener != null && !FolioReader.get().config.isAutoSaveReadLocator())
+                bookMarkListener.saveBookMark(readLocator);
         }
     };
+
+    public BookMarkListener getBookMarkListener() {
+        return bookMarkListener;
+
+    }
+
+    public FolioReader setBookMarkListener(BookMarkListener bookMarkListener) {
+        this.bookMarkListener = bookMarkListener;
+        return singleton;
+    }
 }

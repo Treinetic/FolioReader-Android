@@ -636,15 +636,16 @@ class FolioPageFragment : Fragment(),
                 isAutoSave = it.isAutoSaveReadLocator
             }
             Log.v(LOG_TAG, "-> isAutoSave -> " + isAutoSave)
-            val intent = if (isAutoSave) {
-                Intent(FolioReader.ACTION_SAVE_READ_LOCATOR)
-            } else {
-                Intent(FolioReader.ACTION_SAVE_READ_LOCATOR_BOOKMARK)
-            }
+
+            val intent = Intent(FolioReader.ACTION_SAVE_READ_LOCATOR)
             intent.putExtra(FolioReader.EXTRA_READ_LOCATOR, lastReadLocator as Parcelable?)
             LocalBroadcastManager.getInstance(context!!).sendBroadcast(intent)
 
-
+            if (!isAutoSave) {
+                val intentBookMark = Intent(FolioReader.ACTION_SAVE_READ_LOCATOR_BOOKMARK)
+                intent.putExtra(FolioReader.EXTRA_READ_LOCATOR, lastReadLocator as Parcelable?)
+                LocalBroadcastManager.getInstance(context!!).sendBroadcast(intentBookMark)
+            }
             (this as java.lang.Object).notify()
         }
     }
