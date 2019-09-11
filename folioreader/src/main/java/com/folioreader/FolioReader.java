@@ -286,6 +286,7 @@ public class FolioReader {
             singleton.onHighlightListener = null;
             singleton.readLocatorListener = null;
             singleton.onClosedListener = null;
+            singleton.bookMarkListener = null;
         }
     }
 
@@ -308,16 +309,20 @@ public class FolioReader {
         localBroadcastManager.unregisterReceiver(highlightReceiver);
         localBroadcastManager.unregisterReceiver(readLocatorReceiver);
         localBroadcastManager.unregisterReceiver(closedReceiver);
+        localBroadcastManager.unregisterReceiver(bookMarkReceiver);
     }
 
     private BroadcastReceiver bookMarkReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.d("FolioReader", "bookMarkReceiver called");
+            Log.d("FolioReader", "bookMarkReceiver onReceive called");
             ReadLocator readLocator =
                     (ReadLocator) intent.getSerializableExtra(FolioReader.EXTRA_READ_LOCATOR);
-            if (bookMarkListener != null && !FolioReader.get().config.isAutoSaveReadLocator())
+            if (bookMarkListener != null && !FolioReader.get().config.isAutoSaveReadLocator()) {
                 bookMarkListener.saveBookMark(readLocator);
+                Log.d("FolioReader", "bookMarkListener called");
+            }
+
         }
     };
 

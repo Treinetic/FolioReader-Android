@@ -1130,6 +1130,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
         if (isAutoSave) return
         var folioPageFragment: FolioPageFragment? = currentFragment ?: return
+        folioPageFragment?.clickedBookMarkIcon = true
         entryReadLocator = folioPageFragment!!.getLastReadLocator()
 
         if (!isFinishing) {

@@ -126,6 +126,7 @@ class FolioPageFragment : Fragment(),
     var searchLocatorVisible: SearchLocator? = null
 
     private lateinit var chapterUrl: Uri
+    var clickedBookMarkIcon = false
 
     val pageName: String
         get() = mBookTitle + "$" + spineItem.href
@@ -635,16 +636,23 @@ class FolioPageFragment : Fragment(),
             FolioReader.get().config?.let {
                 isAutoSave = it.isAutoSaveReadLocator
             }
-            Log.v(LOG_TAG, "-> isAutoSave -> " + isAutoSave)
+            Log.v(
+                LOG_TAG, "-> isAutoSave -> " + isAutoSave +
+                        " clickedBookMarkIcon ->" + clickedBookMarkIcon
+            )
 
             val intent = Intent(FolioReader.ACTION_SAVE_READ_LOCATOR)
             intent.putExtra(FolioReader.EXTRA_READ_LOCATOR, lastReadLocator as Parcelable?)
             LocalBroadcastManager.getInstance(context!!).sendBroadcast(intent)
 
-            if (!isAutoSave) {
+            if (!isAutoSave && clickedBookMarkIcon) {
                 val intentBookMark = Intent(FolioReader.ACTION_SAVE_READ_LOCATOR_BOOKMARK)
-                intent.putExtra(FolioReader.EXTRA_READ_LOCATOR, lastReadLocator as Parcelable?)
+                intentBookMark.putExtra(
+                    FolioReader.EXTRA_READ_LOCATOR,
+                    lastReadLocator as Parcelable?
+                )
                 LocalBroadcastManager.getInstance(context!!).sendBroadcast(intentBookMark)
+                if (lastReadLocator != null) clickedBookMarkIcon = false
             }
             (this as java.lang.Object).notify()
         }
