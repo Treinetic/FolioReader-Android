@@ -546,7 +546,9 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
         val publication = pubBox!!.publication
         spine = publication.readingOrder
-        title = publication.metadata.title
+        //set book title from bookName
+        //title = publication.metadata.title
+        title = FolioReader.get().config.bookTitle
 
         if (mBookId == null) {
             if (!publication.metadata.identifier.isEmpty()) {
