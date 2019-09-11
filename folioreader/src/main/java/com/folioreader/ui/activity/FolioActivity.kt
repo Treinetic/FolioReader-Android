@@ -385,6 +385,8 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         }
         if (!config.isShowTts)
             menu.findItem(R.id.itemTts).isVisible = false
+        if (!FolioReader.get().config.isShowBookmark)
+            menu.findItem(R.id.bookmark).isVisible = false
 
         return true
     }

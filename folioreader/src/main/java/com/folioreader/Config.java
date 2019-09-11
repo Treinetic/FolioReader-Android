@@ -55,6 +55,7 @@ public class Config implements Parcelable {
     private boolean enableHighLight = true;
     private boolean autoSaveReadLocator = true;
     private String bookTitle = null;
+    private boolean showBookmark = false;
 
     /**
      * Reading modes available
@@ -413,6 +414,14 @@ public class Config implements Parcelable {
 
     public void setAutoSaveReadLocator(boolean autoSaveReadLocator) {
         this.autoSaveReadLocator = autoSaveReadLocator;
+    }
+
+    public boolean isShowBookmark() {
+        return showBookmark;
+    }
+
+    public void setShowBookmark(boolean showBookmark) {
+        this.showBookmark = showBookmark;
     }
 }
 
