@@ -174,7 +174,10 @@ class FolioWebView : WebView {
             velocityX: Float,
             velocityY: Float
         ): Boolean {
-            //Log.d(LOG_TAG, "-> onFling -> e1 = " + e1 + ", e2 = " + e2 + ", velocityX = " + velocityX + ", velocityY = " + velocityY);
+//            Log.d(
+//                LOG_TAG,
+//                "-> onFling -> e1 = " + e1 + ", e2 = " + e2 + ", velocityX = " + velocityX + ", velocityY = " + velocityY
+//            );
 
             if (!webViewPager.isScrolling) {
                 // Need to complete the scroll as ViewPager thinks these touch events should not

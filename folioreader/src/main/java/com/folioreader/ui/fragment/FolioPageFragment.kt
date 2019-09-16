@@ -395,7 +395,7 @@ class FolioPageFragment : Fragment(),
 
         mWebview!!.setScrollListener(object : FolioWebView.ScrollListener {
             override fun onScrollChange(percent: Int) {
-
+                Log.d(LOG_TAG,"onScrollChange -> percent: $percent")
                 mScrollSeekbar!!.setProgressAndThumb(percent)
                 updatePagesLeftText(percent)
             }
