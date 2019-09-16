@@ -9,7 +9,7 @@
 var thisHighlight;
 var audioMarkClass;
 var wordsPerMinute = 180;
-
+var tapTwice=false
 var Direction = Object.freeze({
     VERTICAL: "VERTICAL",
     HORIZONTAL: "HORIZONTAL"
@@ -938,8 +938,21 @@ function rectContains(a, b) {
         // now check for containment
         && a.left <= b.left && a.top <= b.top && a.right >= b.right && a.bottom >= b.bottom;
 }
-
+var previousDate=0
 function clickImg(img){
- console.debug("-> clickImg "+img.src);
-FolioPageFragment.clickImage(img.src)
+     console.debug("-> clickImg "+img.src);
+     var nowDate = Date.now();
+
+     var timeDiff=nowDate-previousDate
+      console.debug("-> clickImg nowDate  : "+nowDate +" previousDate : "+previousDate +" diff : "+timeDiff);
+
+     if(timeDiff <500 && nowDate>previousDate){
+        console.debug("-> clickImg double tap inprogress");
+        FolioPageFragment.clickImage(img.src);
+        previousDate=0
+        return
+     }
+    previousDate=nowDate
+
+
 }
