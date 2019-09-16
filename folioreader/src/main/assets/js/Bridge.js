@@ -9,7 +9,7 @@
 var thisHighlight;
 var audioMarkClass;
 var wordsPerMinute = 180;
-var tapTwice=false
+
 var Direction = Object.freeze({
     VERTICAL: "VERTICAL",
     HORIZONTAL: "HORIZONTAL"
@@ -942,7 +942,6 @@ var previousDate=0
 function clickImg(img){
      console.debug("-> clickImg "+img.src);
      var nowDate = Date.now();
-
      var timeDiff=nowDate-previousDate
       console.debug("-> clickImg nowDate  : "+nowDate +" previousDate : "+previousDate +" diff : "+timeDiff);
 
