@@ -7,17 +7,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.folioreader.Config;
 import com.folioreader.R;
 import com.folioreader.model.TOCLinkWrapper;
 import com.folioreader.ui.adapter.TOCAdapter;
 import com.folioreader.util.AppUtil;
+
 import org.readium.r2.shared.Link;
 import org.readium.r2.shared.Publication;
 
@@ -130,6 +133,8 @@ public class TableOfContentFragment extends Fragment implements TOCAdapter.TOCCa
     }
 
     public void onLoadTOC(ArrayList<TOCLinkWrapper> tocLinkWrapperList) {
+        if (tocLinkWrapperList == null) return;
+        if (tocLinkWrapperList.size() <= 1) return;
         mTOCAdapter = new TOCAdapter(getActivity(), tocLinkWrapperList,
                 getArguments().getString(SELECTED_CHAPTER_POSITION), mConfig);
         mTOCAdapter.setCallback(this);
