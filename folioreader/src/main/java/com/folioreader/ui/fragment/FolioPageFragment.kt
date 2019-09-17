@@ -314,7 +314,7 @@ class FolioPageFragment : Fragment(),
                 mediaController.setUpMediaPlayer(spineItem.mediaOverlay, spineItem.mediaOverlay.getAudioPath(spineItem.href), mBookTitle);
             }*/
             mConfig = AppUtil.getSavedConfig(context)
-
+            if (mConfig == null) mConfig = FolioReader.get().config
             val href = spineItem.href
             var path = ""
             val forwardSlashLastIndex = href!!.lastIndexOf('/')
@@ -330,9 +330,10 @@ class FolioPageFragment : Fragment(),
                 }
 
             uiHandler.post {
-                mWebview!!.loadDataWithBaseURL(
+                mConfig ?: return@post
+                mWebview?.loadDataWithBaseURL(
                     mActivityCallback?.streamerUrl + path,
-                    HtmlUtil.getHtmlContent(context!!, mHtmlString, mConfig!!),
+                    HtmlUtil.getHtmlContent(requireContext(), mHtmlString, mConfig!!),
                     mimeType,
                     "UTF-8", null
                 )
@@ -395,7 +396,7 @@ class FolioPageFragment : Fragment(),
 
         mWebview!!.setScrollListener(object : FolioWebView.ScrollListener {
             override fun onScrollChange(percent: Int) {
-                Log.d(LOG_TAG,"onScrollChange -> percent: $percent")
+                Log.d(LOG_TAG, "onScrollChange -> percent: $percent")
                 mScrollSeekbar!!.setProgressAndThumb(percent)
                 updatePagesLeftText(percent)
             }
