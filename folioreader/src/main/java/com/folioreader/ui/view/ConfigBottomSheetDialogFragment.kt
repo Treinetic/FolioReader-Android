@@ -6,6 +6,7 @@ import android.animation.ValueAnimator
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -263,14 +264,20 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
         view_config_font_size_seek_bar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
-                config.fontSize = progress
+//                config.fontSize = progress
+//                AppUtil.saveConfig(activity, config)
+//                EventBus.getDefault().post(ReloadDataEvent())
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar) {
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar) {
+                Log.d(LOG_TAG,"onStopTrackingTouch -> progress : ${seekBar.progress}")
+                config.fontSize = seekBar.progress
                 AppUtil.saveConfig(activity, config)
                 EventBus.getDefault().post(ReloadDataEvent())
             }
-
-            override fun onStartTrackingTouch(seekBar: SeekBar) {}
-
-            override fun onStopTrackingTouch(seekBar: SeekBar) {}
         })
     }
 
