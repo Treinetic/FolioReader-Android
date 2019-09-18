@@ -6,6 +6,7 @@ import android.animation.ValueAnimator
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -277,6 +278,7 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
                 config.fontSize = seekBar.progress
                 AppUtil.saveConfig(activity, config)
                 EventBus.getDefault().post(ReloadDataEvent())
+                Handler().post { dismiss()}
             }
         })
     }
