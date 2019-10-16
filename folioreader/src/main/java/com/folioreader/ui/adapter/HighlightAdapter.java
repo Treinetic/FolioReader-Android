@@ -3,14 +3,18 @@ package com.folioreader.ui.adapter;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.folioreader.Config;
+import com.folioreader.FolioReader;
 import com.folioreader.R;
 import com.folioreader.model.HighlightImpl;
 import com.folioreader.ui.view.UnderlinedTextView;
@@ -153,7 +157,7 @@ public class HighlightAdapter extends RecyclerView.Adapter<HighlightAdapter.High
 
     static class HighlightHolder extends RecyclerView.ViewHolder {
         private UnderlinedTextView content;
-        private ImageView delete, editNote;
+        private ImageView delete, editNote, deleteHighlight;
         private TextView date;
         private RelativeLayout container;
         private TextView note;
@@ -166,8 +170,11 @@ public class HighlightAdapter extends RecyclerView.Adapter<HighlightAdapter.High
             content = (UnderlinedTextView) itemView.findViewById(R.id.utv_highlight_content);
             delete = (ImageView) itemView.findViewById(R.id.iv_delete);
             editNote = (ImageView) itemView.findViewById(R.id.iv_edit_note);
+            deleteHighlight = (ImageView) itemView.findViewById(R.id.deleteHighlight);
             date = (TextView) itemView.findViewById(R.id.tv_highlight_date);
             note = (TextView) itemView.findViewById(R.id.tv_note);
+
+
         }
     }
 

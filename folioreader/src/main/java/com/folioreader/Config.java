@@ -56,6 +56,8 @@ public class Config implements Parcelable {
     private boolean autoSaveReadLocator = true;
     private String bookTitle = null;
     private boolean showBookmark = false;
+    private boolean showHighlightEdit = false;
+    private boolean showHighlightDelete = true;
 
     /**
      * Reading modes available
@@ -422,6 +424,22 @@ public class Config implements Parcelable {
 
     public void setShowBookmark(boolean showBookmark) {
         this.showBookmark = showBookmark;
+    }
+
+    public boolean isShowHighlightEdit() {
+        return showHighlightEdit;
+    }
+
+    public void setShowHighlightEdit(boolean showHighlightEdit) {
+        this.showHighlightEdit = showHighlightEdit;
+    }
+
+    public boolean isShowHighlightDelete() {
+        return showHighlightDelete;
+    }
+
+    public void setShowHighlightDelete(boolean showHighlightDelete) {
+        this.showHighlightDelete = showHighlightDelete;
     }
 }
 

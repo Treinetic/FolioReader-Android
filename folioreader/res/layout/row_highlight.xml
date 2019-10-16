@@ -15,7 +15,8 @@
             android:background="#8A2BE2"
             android:paddingLeft="25dp"
             android:paddingRight="25dp"
-            android:src="@drawable/edit_note" />
+            android:src="@drawable/edit_note"
+                android:visibility="gone"/>
 
         <ImageView
             android:id="@+id/iv_delete"
@@ -65,5 +66,15 @@
             android:text=""
             android:textColor="@color/black"
             android:textSize="14sp" />
+
+        <ImageView
+                android:id="@+id/deleteHighlight"
+               android:src="@drawable/trash_grey"
+                android:layout_width="17dp"
+                android:layout_height="17dp"
+                android:layout_below="@+id/tv_note"
+                android:layout_alignParentRight="true"
+                android:visibility="gone"
+                />
     </RelativeLayout>
 </com.daimajia.swipe.SwipeLayout>
