@@ -488,7 +488,9 @@ class FolioPageFragment : Fragment(),
 
                 if (readLocator != null) {
                     val cfi = readLocator.locations.cfi
-                    Log.v(LOG_TAG, "-> onPageFinished -> readLocator -> " + cfi!!)
+                    readLocator.locations.cfi?.let {
+                        Log.v(LOG_TAG, "-> onPageFinished -> readLocator -> $cfi")
+                    }
                     mWebview!!.loadUrl(String.format(getString(R.string.callScrollToCfi), cfi))
                 } else {
                     loadingView!!.hide()
