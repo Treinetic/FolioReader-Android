@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.*;
+
+import androidx.annotation.Keep;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
@@ -38,7 +40,7 @@ import java.net.URLEncoder;
 /**
  * @author gautam chibde on 4/7/17.
  */
-
+@Keep
 public class DictionaryFragment extends DialogFragment
         implements DictionaryCallBack, WikipediaCallBack {
 

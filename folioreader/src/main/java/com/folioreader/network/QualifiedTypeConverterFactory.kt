@@ -1,5 +1,6 @@
 package com.folioreader.network
 
+import androidx.annotation.Keep
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Converter
@@ -14,7 +15,7 @@ internal annotation class Jackson
 
 // Annotation based converters
 // URL - https://github.com/square/retrofit/blob/b115292dba5f328fbc99e024c76d50866e94f3bf/samples/src/main/java/com/example/retrofit/JsonAndXmlConverters.java
-
+@Keep
 class QualifiedTypeConverterFactory : Converter.Factory {
 
     val jacksonFactory: Converter.Factory
@@ -43,7 +44,9 @@ class QualifiedTypeConverterFactory : Converter.Factory {
 
     override fun requestBodyConverter(
         type: Type,
-        parameterAnnotations: Array<Annotation>, methodAnnotations: Array<Annotation>, retrofit: Retrofit
+        parameterAnnotations: Array<Annotation>,
+        methodAnnotations: Array<Annotation>,
+        retrofit: Retrofit
     ): Converter<*, RequestBody>? {
 
         for (annotation in parameterAnnotations) {

@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.SeekBar
+import androidx.annotation.Keep
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.folioreader.Config
@@ -33,6 +34,7 @@ import org.greenrobot.eventbus.EventBus
 /**
  * Created by mobisys2 on 11/16/2016.
  */
+@Keep
 class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
     companion object {
@@ -46,7 +48,11 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
     private lateinit var activityCallback: FolioActivityCallback
     private val primaryColor = Color.parseColor("#FF5832")
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.view_config, container)
     }
 
@@ -260,10 +266,14 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
     private fun configSeekBar() {
         val thumbDrawable = ContextCompat.getDrawable(activity!!, R.drawable.seekbar_thumb)
         UiUtil.setColorIntToDrawable(primaryColor, thumbDrawable)
-        UiUtil.setColorResToDrawable(R.color.grey_color, view_config_font_size_seek_bar.progressDrawable)
+        UiUtil.setColorResToDrawable(
+            R.color.grey_color,
+            view_config_font_size_seek_bar.progressDrawable
+        )
         view_config_font_size_seek_bar.thumb = thumbDrawable
 
-        view_config_font_size_seek_bar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        view_config_font_size_seek_bar.setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
 //                config.fontSize = progress
 //                AppUtil.saveConfig(activity, config)
@@ -274,11 +284,11 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar) {
-                Log.d(LOG_TAG,"onStopTrackingTouch -> progress : ${seekBar.progress}")
+                Log.d(LOG_TAG, "onStopTrackingTouch -> progress : ${seekBar.progress}")
                 config.fontSize = seekBar.progress
                 AppUtil.saveConfig(activity, config)
                 EventBus.getDefault().post(ReloadDataEvent())
-                Handler().post { dismiss()}
+                Handler().post { dismiss() }
             }
         })
     }
@@ -293,7 +303,9 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
     private fun setAudioPlayerBackground() {
 
-        var mediaControllerFragment: Fragment? = fragmentManager?.findFragmentByTag(MediaControllerFragment.LOG_TAG)
+        var mediaControllerFragment: Fragment? = fragmentManager?.findFragmentByTag(
+            MediaControllerFragment.LOG_TAG
+        )
             ?: return
         mediaControllerFragment = mediaControllerFragment as MediaControllerFragment
         if (isNightMode) {

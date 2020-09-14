@@ -3,6 +3,9 @@ package com.folioreader.ui.base;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.util.Log;
+
+import androidx.annotation.Keep;
+
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.folioreader.model.dictionary.Dictionary;
@@ -18,7 +21,7 @@ import java.net.URL;
 /**
  * @author gautam chibde on 4/7/17.
  */
-
+@Keep
 public class DictionaryTask extends AsyncTask<String, Void, Dictionary> {
 
     private static final String TAG = "DictionaryTask";

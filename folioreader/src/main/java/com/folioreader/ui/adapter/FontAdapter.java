@@ -19,12 +19,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.annotation.Keep;
 import androidx.recyclerview.widget.RecyclerView;
 import com.folioreader.Font;
 import com.folioreader.R;
 
 import java.util.ArrayList;
-
+@Keep
 public class FontAdapter extends RecyclerView.Adapter<FontAdapter.ViewHolder> {
 
     private ArrayList<Font> mFonts = null;

@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.os.Parcelable;
 import android.util.Log;
 
+import androidx.annotation.Keep;
 import androidx.annotation.Nullable;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
@@ -35,7 +36,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by avez raj on 9/13/2017.
  */
-
+@Keep
 public class FolioReader {
 
     @SuppressLint("StaticFieldLeak")

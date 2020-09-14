@@ -1,9 +1,11 @@
 package com.folioreader.model.dictionary;
 
+import androidx.annotation.Keep;
+
 /**
  * Created by gautam on 7/7/17.
  */
-
+@Keep
 public class Wikipedia {
     private String word;
     private String definition;

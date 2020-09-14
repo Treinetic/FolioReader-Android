@@ -1,6 +1,9 @@
 package com.folioreader.ui.base;
 
 import android.os.AsyncTask;
+
+import androidx.annotation.Keep;
+
 import com.folioreader.model.HighLight;
 import com.folioreader.model.sqlite.HighLightTable;
 
@@ -11,6 +14,7 @@ import java.util.List;
  * <p>
  * Created by gautam on 10/10/17.
  */
+@Keep
 public class SaveReceivedHighlightTask extends AsyncTask<Void, Void, Void> {
 
     private OnSaveHighlight onSaveHighlight;

@@ -1,5 +1,7 @@
 package com.folioreader.model;
 
+import androidx.annotation.Keep;
+
 import com.folioreader.util.MultiLevelExpIndListAdapter;
 import org.readium.r2.shared.Link;
 
@@ -9,7 +11,7 @@ import java.util.List;
 /**
  * Created by Mahavir on 3/10/17.
  */
-
+@Keep
 public class TOCLinkWrapper implements MultiLevelExpIndListAdapter.ExpIndData {
     private Link tocLink;
     private int indentation;

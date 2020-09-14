@@ -1,5 +1,7 @@
 package com.folioreader.model;
 
+import androidx.annotation.Keep;
+
 import java.util.Date;
 
 /**
@@ -7,7 +9,7 @@ import java.util.Date;
  *
  * @author gautam chibde on 9/10/17.
  */
-
+@Keep
 public interface HighLight {
 
     /**

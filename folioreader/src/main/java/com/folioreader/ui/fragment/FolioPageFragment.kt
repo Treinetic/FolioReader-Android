@@ -19,6 +19,7 @@ import android.view.animation.AnimationUtils
 import android.webkit.*
 import android.widget.FrameLayout
 import android.widget.TextView
+import androidx.annotation.Keep
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
@@ -55,6 +56,7 @@ import java.util.regex.Pattern
 /**
  * Created by mahavir on 4/2/16.
  */
+@Keep
 class FolioPageFragment : Fragment(),
     HtmlTaskCallback, MediaControllerCallbacks, FolioWebView.SeekBarListener {
 

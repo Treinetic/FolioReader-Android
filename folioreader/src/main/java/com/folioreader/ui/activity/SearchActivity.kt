@@ -12,6 +12,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageButton
+import androidx.annotation.Keep
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -34,6 +35,7 @@ import com.folioreader.viewmodels.SearchViewModel
 import kotlinx.android.synthetic.main.activity_search.*
 import java.lang.reflect.Field
 
+@Keep
 class SearchActivity : AppCompatActivity(), OnItemClickListener {
 
     companion object {
@@ -175,7 +177,10 @@ class SearchActivity : AppCompatActivity(), OnItemClickListener {
 
         val query: String = intent.getStringExtra(SearchManager.QUERY)
         val newDataBundle = Bundle()
-        newDataBundle.putString(ListViewType.KEY, ListViewType.PAGINATION_IN_PROGRESS_VIEW.toString())
+        newDataBundle.putString(
+            ListViewType.KEY,
+            ListViewType.PAGINATION_IN_PROGRESS_VIEW.toString()
+        )
         newDataBundle.putParcelableArrayList("DATA", ArrayList<SearchLocator>())
         searchViewModel.liveAdapterDataBundle.value = newDataBundle
 
@@ -316,7 +321,10 @@ class SearchActivity : AppCompatActivity(), OnItemClickListener {
                     linearLayoutManager.findFirstVisibleItemPosition()
                 )
                 intent.putExtra(SearchAdapter.DATA_BUNDLE, searchAdapterDataBundle)
-                intent.putExtra(FolioActivity.EXTRA_SEARCH_ITEM, viewHolder.searchLocator as Parcelable)
+                intent.putExtra(
+                    FolioActivity.EXTRA_SEARCH_ITEM,
+                    viewHolder.searchLocator as Parcelable
+                )
                 intent.putExtra(BUNDLE_SAVE_SEARCH_QUERY, searchView.query)
                 setResult(ResultCode.ITEM_SELECTED.value, intent)
                 finish()

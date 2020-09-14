@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+import androidx.annotation.Keep;
+
+@Keep
 public class DbAdapter {
     private static final String TAG = "DBAdapter";
 

@@ -19,6 +19,7 @@ import android.webkit.JavascriptInterface
 import android.webkit.WebView
 import android.widget.PopupWindow
 import android.widget.Toast
+import androidx.annotation.Keep
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.core.view.GestureDetectorCompat
@@ -46,6 +47,7 @@ import java.lang.ref.WeakReference
 /**
  * @author by mahavir on 3/31/16.
  */
+@Keep
 class FolioWebView : WebView {
 
     companion object {

@@ -2,6 +2,9 @@ package com.folioreader.ui.base;
 
 import android.os.AsyncTask;
 import android.util.Log;
+
+import androidx.annotation.Keep;
+
 import com.folioreader.model.dictionary.Wikipedia;
 import com.folioreader.util.AppUtil;
 import org.json.JSONArray;
@@ -17,7 +20,7 @@ import java.net.URLConnection;
 /**
  * @author gautam chibde on 4/7/17.
  */
-
+@Keep
 public class WikipediaTask extends AsyncTask<String, Void, Wikipedia> {
 
     private static final String TAG = "WikipediaTask";

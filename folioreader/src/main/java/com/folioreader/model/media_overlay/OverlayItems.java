@@ -3,10 +3,12 @@ package com.folioreader.model.media_overlay;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.Keep;
+
 /**
  * @author gautam chibde on 13/6/17.
  */
-
+@Keep
 public class OverlayItems implements Parcelable {
     private String id;
     private String tag;

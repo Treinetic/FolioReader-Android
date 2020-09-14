@@ -1,5 +1,7 @@
 package com.folioreader.util;
 
+import androidx.annotation.Keep;
+
 import com.folioreader.model.HighLight;
 import com.folioreader.model.HighlightImpl;
 
@@ -8,7 +10,7 @@ import com.folioreader.model.HighlightImpl;
  *
  * @author gautam chibde on 26/9/17.
  */
-
+@Keep
 public interface OnHighlightListener {
 
     /**

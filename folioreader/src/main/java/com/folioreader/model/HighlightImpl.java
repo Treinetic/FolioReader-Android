@@ -3,6 +3,8 @@ package com.folioreader.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.Keep;
+
 import java.util.Date;
 
 /**
@@ -10,7 +12,7 @@ import java.util.Date;
  *
  * @author mahavir on 5/12/16.
  */
-
+@Keep
 public class HighlightImpl implements Parcelable, HighLight {
 
     public static final String INTENT = HighlightImpl.class.getName();

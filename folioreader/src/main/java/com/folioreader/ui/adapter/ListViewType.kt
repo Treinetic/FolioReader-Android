@@ -2,7 +2,9 @@ package com.folioreader.ui.adapter
 
 import android.text.TextUtils
 import android.util.Log
+import androidx.annotation.Keep
 
+@Keep
 enum class ListViewType(val value: Int) {
 
     UNKNOWN_VIEW(0),

@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import androidx.annotation.Keep
 import com.folioreader.Config
 import com.folioreader.Constants
 import com.folioreader.util.SharedPreferenceUtil.getSharedPreferencesString
@@ -21,6 +22,7 @@ import java.util.*
 /**
  * Created by mahavir on 5/7/16.
  */
+@Keep
 class AppUtil {
 
     companion object {

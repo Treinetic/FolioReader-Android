@@ -6,12 +6,13 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.*
 import android.webkit.JavascriptInterface
+import androidx.annotation.Keep
 import androidx.core.view.GestureDetectorCompat
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.folioreader.R
-import com.folioreader.util.AppUtil
 
+@Keep
 class WebViewPager : ViewPager {
 
     companion object {

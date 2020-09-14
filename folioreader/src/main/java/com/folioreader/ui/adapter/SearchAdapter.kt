@@ -11,11 +11,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.annotation.Keep
 import androidx.recyclerview.widget.RecyclerView
 import com.folioreader.R
 import com.folioreader.model.locators.SearchItemType
 import com.folioreader.model.locators.SearchLocator
 
+@Keep
 class SearchAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     companion object {

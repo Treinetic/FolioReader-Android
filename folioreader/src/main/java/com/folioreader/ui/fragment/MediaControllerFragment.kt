@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
+import androidx.annotation.Keep
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
 import com.folioreader.Config
@@ -26,6 +27,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import org.greenrobot.eventbus.EventBus
 
+@Keep
 class MediaControllerFragment : BottomSheetDialogFragment() {
 
     companion object {
@@ -171,9 +173,15 @@ class MediaControllerFragment : BottomSheetDialogFragment() {
         config = AppUtil.getSavedConfig(context)!!
 
         if (Build.VERSION.SDK_INT >= 24) {
-            btnOneAndHalfSpeed?.text = Html.fromHtml(context!!.getString(R.string.one_and_half_speed), 0)
+            btnOneAndHalfSpeed?.text = Html.fromHtml(
+                context!!.getString(R.string.one_and_half_speed),
+                0
+            )
             btnHalfSpeed?.text = Html.fromHtml(context!!.getString(R.string.half_speed_text), 0)
-            btnTextUnderlineStyle?.text = Html.fromHtml(context!!.getString(R.string.style_underline), 0)
+            btnTextUnderlineStyle?.text = Html.fromHtml(
+                context!!.getString(R.string.style_underline),
+                0
+            )
         } else {
             btnOneAndHalfSpeed?.text = Html.fromHtml(context!!.getString(R.string.one_and_half_speed))
             btnHalfSpeed?.text = Html.fromHtml(context!!.getString(R.string.half_speed_text))
@@ -248,11 +256,21 @@ class MediaControllerFragment : BottomSheetDialogFragment() {
 
         playPauseButton?.setOnClickListener {
             if (isPlaying) {
-                playPauseButton?.setImageDrawable(ContextCompat.getDrawable(context!!, R.drawable.ic_play))
+                playPauseButton?.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        context!!,
+                        R.drawable.ic_play
+                    )
+                )
                 UiUtil.setColorIntToDrawable(config.themeColor, playPauseButton?.drawable)
                 callback.pause()
             } else {
-                playPauseButton?.setImageDrawable(ContextCompat.getDrawable(context!!, R.drawable.ic_pause))
+                playPauseButton?.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        context!!,
+                        R.drawable.ic_pause
+                    )
+                )
                 UiUtil.setColorIntToDrawable(config.themeColor, playPauseButton?.drawable)
                 callback.play()
             }
@@ -281,12 +299,20 @@ class MediaControllerFragment : BottomSheetDialogFragment() {
 
         btnBackColorStyle?.setOnClickListener {
             toggleTextStyle(true, false, false)
-            EventBus.getDefault().post(MediaOverlayHighlightStyleEvent(MediaOverlayHighlightStyleEvent.Style.DEFAULT))
+            EventBus.getDefault().post(
+                MediaOverlayHighlightStyleEvent(
+                    MediaOverlayHighlightStyleEvent.Style.DEFAULT
+                )
+            )
         }
 
         btnTextUnderlineStyle?.setOnClickListener {
             toggleTextStyle(false, true, false)
-            EventBus.getDefault().post(MediaOverlayHighlightStyleEvent(MediaOverlayHighlightStyleEvent.Style.UNDERLINE))
+            EventBus.getDefault().post(
+                MediaOverlayHighlightStyleEvent(
+                    MediaOverlayHighlightStyleEvent.Style.UNDERLINE
+                )
+            )
         }
 
         btnTextColorStyle?.setOnClickListener {
@@ -302,7 +328,12 @@ class MediaControllerFragment : BottomSheetDialogFragment() {
         btnTextColorStyle?.isSelected = textColor
     }
 
-    private fun toggleSpeedControlButtons(half: Boolean, one: Boolean, oneHalf: Boolean, two: Boolean) {
+    private fun toggleSpeedControlButtons(
+        half: Boolean,
+        one: Boolean,
+        oneHalf: Boolean,
+        two: Boolean
+    ) {
         btnHalfSpeed?.isSelected = half
         btnOneXSpeed?.isSelected = one
         btnOneAndHalfSpeed?.isSelected = oneHalf

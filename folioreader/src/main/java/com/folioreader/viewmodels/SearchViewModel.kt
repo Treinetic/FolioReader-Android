@@ -2,6 +2,7 @@ package com.folioreader.viewmodels
 
 import android.os.Bundle
 import android.util.Log
+import androidx.annotation.Keep
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.folioreader.FolioReader
@@ -14,6 +15,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+@Keep
 class SearchViewModel : ViewModel() {
 
     companion object {
@@ -93,11 +95,16 @@ class SearchViewModel : ViewModel() {
 
             ++successSearchCallCount
             val responseList: MutableList<SearchLocator> = bundle.getParcelableArrayList("DATA")!!
-            var liveList: MutableList<SearchLocator> = liveAdapterDataBundle.value!!.getParcelableArrayList("DATA")!!
+            var liveList: MutableList<SearchLocator> = liveAdapterDataBundle.value!!.getParcelableArrayList(
+                "DATA"
+            )!!
             liveList = liveList.toMutableList()
 
             if (liveList.isEmpty()) {
-                bundle.putString(ListViewType.KEY, ListViewType.PAGINATION_IN_PROGRESS_VIEW.toString())
+                bundle.putString(
+                    ListViewType.KEY,
+                    ListViewType.PAGINATION_IN_PROGRESS_VIEW.toString()
+                )
                 liveAdapterDataBundle.value = bundle
 
             } else {
@@ -110,7 +117,10 @@ class SearchViewModel : ViewModel() {
                 liveList.addAll(responseList)
 
                 val dataBundle = Bundle()
-                dataBundle.putString(ListViewType.KEY, ListViewType.PAGINATION_IN_PROGRESS_VIEW.toString())
+                dataBundle.putString(
+                    ListViewType.KEY,
+                    ListViewType.PAGINATION_IN_PROGRESS_VIEW.toString()
+                )
                 dataBundle.putParcelableArrayList("DATA", ArrayList(liveList))
                 liveAdapterDataBundle.value = dataBundle
             }
@@ -122,7 +132,9 @@ class SearchViewModel : ViewModel() {
         }
 
         if (--searchCallCount == 0) {
-            val liveList: MutableList<SearchLocator> = liveAdapterDataBundle.value!!.getParcelableArrayList("DATA")!!
+            val liveList: MutableList<SearchLocator> = liveAdapterDataBundle.value!!.getParcelableArrayList(
+                "DATA"
+            )!!
             val dataBundle = Bundle()
             dataBundle.putParcelableArrayList("DATA", ArrayList(liveList))
 

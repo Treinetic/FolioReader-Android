@@ -1,6 +1,9 @@
 package com.folioreader.ui.base;
 
 import android.content.Context;
+
+import androidx.annotation.Keep;
+
 import com.folioreader.Config;
 import com.folioreader.Constants;
 import com.folioreader.R;
@@ -8,7 +11,7 @@ import com.folioreader.R;
 /**
  * @author gautam chibde on 14/6/17.
  */
-
+@Keep
 public final class HtmlUtil {
 
     /**

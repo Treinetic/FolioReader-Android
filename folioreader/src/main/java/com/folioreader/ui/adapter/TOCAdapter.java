@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.Keep;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import com.folioreader.Config;
@@ -21,7 +23,7 @@ import java.util.ArrayList;
 /**
  * Created by mahavir on 3/10/17.
  */
-
+@Keep
 public class TOCAdapter extends MultiLevelExpIndListAdapter {
 
     private static final int LEVEL_ONE_PADDING_PIXEL = 15;

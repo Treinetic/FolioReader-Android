@@ -21,6 +21,7 @@ import android.view.animation.Interpolator;
 import android.widget.Scroller;
 import androidx.annotation.CallSuper;
 import androidx.annotation.DrawableRes;
+import androidx.annotation.Keep;
 import androidx.core.os.ParcelableCompat;
 import androidx.core.os.ParcelableCompatCreatorCallbacks;
 import androidx.core.view.*;
@@ -38,7 +39,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
+@Keep
 public class DirectionalViewpager extends ViewGroup {
     private static final String TAG = "ViewPager";
     private static final boolean DEBUG = false;

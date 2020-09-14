@@ -1,5 +1,7 @@
 package com.folioreader.util;
 
+import androidx.annotation.Keep;
+
 import com.folioreader.model.media_overlay.OverlayItems;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -9,7 +11,7 @@ import java.util.List;
 /**
  * @author gautam chibde on 20/6/17.
  */
-
+@Keep
 public final class SMILParser {
 
     /**

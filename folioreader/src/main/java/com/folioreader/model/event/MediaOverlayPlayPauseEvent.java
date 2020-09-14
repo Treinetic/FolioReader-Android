@@ -1,9 +1,11 @@
 package com.folioreader.model.event;
 
+import androidx.annotation.Keep;
+
 /**
  * @author gautam chibde on 13/6/17.
  */
-
+@Keep
 public class MediaOverlayPlayPauseEvent {
     private boolean play;
     private String href;

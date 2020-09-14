@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.annotation.Keep;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import com.folioreader.Config;
@@ -23,7 +25,7 @@ import java.util.List;
 /**
  * @author gautam chibde on 4/7/17.
  */
-
+@Keep
 public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.DictionaryHolder> {
 
     private List<DictionaryResults> results;

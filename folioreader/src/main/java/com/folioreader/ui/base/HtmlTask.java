@@ -2,6 +2,9 @@ package com.folioreader.ui.base;
 
 import android.os.AsyncTask;
 import android.util.Log;
+
+import androidx.annotation.Keep;
+
 import com.folioreader.FolioReader;
 import com.folioreader.util.AppUtil;
 
@@ -18,7 +21,7 @@ import java.net.URLConnection;
  *
  * @author by gautam on 12/6/17.
  */
-
+@Keep
 public class HtmlTask extends AsyncTask<String, Void, String> {
 
     private static final String TAG = "HtmlTask";

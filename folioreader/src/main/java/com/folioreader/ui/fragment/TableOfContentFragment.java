@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.Keep;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -28,7 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.folioreader.Constants.*;
-
+@Keep
 public class TableOfContentFragment extends Fragment implements TOCAdapter.TOCCallback {
     private TOCAdapter mTOCAdapter;
     private RecyclerView mTableOfContentsRecyclerView;

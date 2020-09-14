@@ -1,5 +1,7 @@
 package com.folioreader.model.dictionary;
 
+import androidx.annotation.Keep;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -8,6 +10,7 @@ import java.util.List;
 /**
  * @author gautam chibde on 4/7/17.
  */
+@Keep
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DictionaryResults {
     @JsonProperty

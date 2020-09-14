@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 
+import androidx.annotation.Keep;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,7 +27,7 @@ import java.util.List;
 /**
  * @author gautam chibde on 16/6/17.
  */
-
+@Keep
 public class HighlightAdapter extends RecyclerView.Adapter<HighlightAdapter.HighlightHolder> {
     private List<HighlightImpl> highlights;
     private HighLightAdapterCallback callback;

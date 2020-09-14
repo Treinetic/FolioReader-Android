@@ -4,11 +4,14 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import androidx.annotation.Keep;
+
 import java.util.Set;
 
 /**
  * Created by PC on 6/9/2016.
  */
+@Keep
 public class SharedPreferenceUtil {
     public static final String SENT_TOKEN_TO_SERVER = "sentTokenToServer";
     public static final String REGISTRATION_COMPLETE = "registrationComplete";

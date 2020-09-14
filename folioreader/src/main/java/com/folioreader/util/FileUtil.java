@@ -6,6 +6,9 @@ import android.content.res.Resources;
 import android.os.Environment;
 import android.text.TextUtils;
 import android.util.Log;
+
+import androidx.annotation.Keep;
+
 import com.folioreader.Constants;
 import com.folioreader.ui.activity.FolioActivity;
 
@@ -14,7 +17,7 @@ import java.io.*;
 /**
  * Created by Mahavir on 12/15/16.
  */
-
+@Keep
 public class FileUtil {
     private static final String TAG = FileUtil.class.getSimpleName();
     private static final String FOLIO_READER_ROOT = "folioreader";

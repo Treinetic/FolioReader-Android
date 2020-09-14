@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import androidx.annotation.Keep
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
@@ -16,6 +17,7 @@ import com.folioreader.Config
 import com.folioreader.R
 import com.folioreader.util.UiUtil
 
+@Keep
 class FolioSearchView : SearchView {
 
     companion object {
@@ -27,7 +29,11 @@ class FolioSearchView : SearchView {
 
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
+        context,
+        attrs,
+        defStyleAttr
+    )
 
     fun init(componentName: ComponentName, config: Config) {
         Log.v(LOG_TAG, "-> init")
@@ -63,10 +69,25 @@ class FolioSearchView : SearchView {
         UiUtil.setEditTextHandleColor(searchAutoComplete, config.themeColor)
         searchAutoComplete.highlightColor = ColorUtils.setAlphaComponent(config.themeColor, 85)
         if (config.isNightMode) {
-            searchAutoComplete.setTextColor(ContextCompat.getColor(context, R.color.night_title_text_color))
-            searchAutoComplete.setHintTextColor(ContextCompat.getColor(context, R.color.night_text_color))
+            searchAutoComplete.setTextColor(
+                ContextCompat.getColor(
+                    context,
+                    R.color.night_title_text_color
+                )
+            )
+            searchAutoComplete.setHintTextColor(
+                ContextCompat.getColor(
+                    context,
+                    R.color.night_text_color
+                )
+            )
         } else {
-            searchAutoComplete.setHintTextColor(ContextCompat.getColor(context, R.color.edit_text_hint_color))
+            searchAutoComplete.setHintTextColor(
+                ContextCompat.getColor(
+                    context,
+                    R.color.edit_text_hint_color
+                )
+            )
         }
     }
 

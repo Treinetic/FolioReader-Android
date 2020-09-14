@@ -1,9 +1,11 @@
 package com.folioreader.model.event;
 
+import androidx.annotation.Keep;
+
 /**
  * Created by PC on 12/24/2016.
  */
-
+@Keep
 public class WebViewPosition {
     private String href;
     private String highlightId;

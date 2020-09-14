@@ -1,5 +1,6 @@
 package com.folioreader.util;
 
+import androidx.annotation.Keep;
 import androidx.recyclerview.widget.RecyclerView;
 import com.folioreader.model.TOCLinkWrapper;
 
@@ -26,6 +27,7 @@ import java.util.List;
  * <p>
  * To see an example of how to extend this abstract class see MyAdapter.java in sampleapp.
  */
+@Keep
 public abstract class MultiLevelExpIndListAdapter extends RecyclerView.Adapter {
     /**
      * Indicates whether or not the observers must be notified whenever

@@ -3,6 +3,7 @@ package com.folioreader.model.locators
 import android.os.Parcel
 import android.os.Parcelable
 import android.util.Log
+import androidx.annotation.Keep
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonPropertyOrder
@@ -12,6 +13,7 @@ import org.readium.r2.shared.Locations
 import org.readium.r2.shared.Locator
 import org.readium.r2.shared.LocatorText
 
+@Keep
 @JsonPropertyOrder("bookId", "href", "created", "locations")
 @JsonIgnoreProperties(ignoreUnknown = true)
 open class ReadLocator : Locator, Parcelable {

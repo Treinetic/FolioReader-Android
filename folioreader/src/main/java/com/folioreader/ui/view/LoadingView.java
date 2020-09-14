@@ -7,6 +7,8 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.webkit.JavascriptInterface;
 import android.widget.ProgressBar;
+
+import androidx.annotation.Keep;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import com.folioreader.Config;
@@ -15,6 +17,7 @@ import com.folioreader.util.AppUtil;
 import com.folioreader.util.UiUtil;
 
 @SuppressWarnings("PMD.AvoidDuplicateLiterals")
+@Keep
 public class LoadingView extends ConstraintLayout {
 
     private ProgressBar progressBar;

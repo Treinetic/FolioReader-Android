@@ -3,6 +3,8 @@ package com.folioreader.ui.adapter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ViewGroup;
+
+import androidx.annotation.Keep;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
@@ -17,6 +19,7 @@ import java.util.List;
 /**
  * @author mahavir on 4/2/16.
  */
+@Keep
 public class FolioPageFragmentAdapter extends FragmentStatePagerAdapter {
 
     private static final String LOG_TAG = FolioPageFragmentAdapter.class.getSimpleName();

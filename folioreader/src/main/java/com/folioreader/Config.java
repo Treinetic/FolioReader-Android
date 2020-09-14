@@ -8,6 +8,7 @@ import android.util.Log;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
+import androidx.annotation.Keep;
 import androidx.core.content.ContextCompat;
 
 import org.json.JSONObject;
@@ -16,6 +17,7 @@ import org.readium.r2.streamer.config.Configurations;
 /**
  * Configuration class for FolioReader.
  */
+@Keep
 @SuppressWarnings("PMD.AvoidDuplicateLiterals")
 public class Config implements Parcelable {
 

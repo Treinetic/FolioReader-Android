@@ -5,6 +5,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import androidx.annotation.Keep;
+
+@Keep
 public class FolioDatabaseHelper extends SQLiteOpenHelper {
     @SuppressWarnings("unused")
     private static final String TAG = "SQLiteOpenHelper";

@@ -2,10 +2,12 @@ package com.folioreader.model.locators
 
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.annotation.Keep
 import org.readium.r2.shared.Locations
 import org.readium.r2.shared.Locator
 import org.readium.r2.shared.LocatorText
 
+@Keep
 enum class SearchItemType {
     UNKNOWN_ITEM,
     SEARCH_COUNT_ITEM,
@@ -13,6 +15,7 @@ enum class SearchItemType {
     SEARCH_RESULT_ITEM
 }
 
+@Keep
 class SearchLocator : Locator, Parcelable {
 
     var primaryContents: String

@@ -29,6 +29,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
+import androidx.annotation.Keep;
 import androidx.core.content.ContextCompat;
 import com.folioreader.AppContext;
 import com.folioreader.R;
@@ -43,6 +44,7 @@ import java.util.Hashtable;
 /**
  * Created by mahavir on 3/30/16.
  */
+@Keep
 public class UiUtil {
 
     private static final String LOG_TAG = UiUtil.class.getSimpleName();

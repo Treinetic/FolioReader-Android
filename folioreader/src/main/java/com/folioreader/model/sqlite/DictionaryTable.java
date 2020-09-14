@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import androidx.annotation.Keep;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -12,7 +14,7 @@ import java.util.Map;
 /**
  * @author gautam chibde on 28/6/17.
  */
-
+@Keep
 public class DictionaryTable {
 
     public static final String TABLE_NAME = "dictionary_table";

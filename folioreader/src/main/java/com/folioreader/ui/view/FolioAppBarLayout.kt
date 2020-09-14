@@ -4,9 +4,11 @@ import android.content.Context
 import android.graphics.Rect
 import android.util.AttributeSet
 import android.util.Log
+import androidx.annotation.Keep
 import androidx.core.view.ViewCompat
 import com.google.android.material.appbar.AppBarLayout
 
+@Keep
 class FolioAppBarLayout : AppBarLayout {
 
     companion object {

@@ -7,6 +7,8 @@ import android.os.Build;
 import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
+
+import androidx.annotation.Keep;
 import androidx.appcompat.app.AppCompatActivity;
 import com.folioreader.Constants;
 import com.folioreader.model.event.MediaOverlayPlayPauseEvent;
@@ -25,7 +27,7 @@ import java.util.Locale;
 /**
  * @author gautam chibde on 21/6/17.
  */
-
+@Keep
 public class MediaController {
 
     private static final String TAG = MediaController.class.getSimpleName();

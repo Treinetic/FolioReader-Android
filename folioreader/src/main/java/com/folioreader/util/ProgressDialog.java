@@ -3,8 +3,11 @@ package com.folioreader.util;
 import android.app.Dialog;
 import android.content.Context;
 import android.widget.TextView;
-import com.folioreader.R;
 
+import androidx.annotation.Keep;
+
+import com.folioreader.R;
+@Keep
 public class ProgressDialog {
 
     public static Dialog show(Context ctx, String text) {

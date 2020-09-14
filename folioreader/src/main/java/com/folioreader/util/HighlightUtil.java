@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+
+import androidx.annotation.Keep;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import com.folioreader.model.HighLight;
 import com.folioreader.model.HighlightImpl;
@@ -19,6 +21,7 @@ import java.util.List;
 /**
  * Created by priyank on 5/12/16.
  */
+@Keep
 public class HighlightUtil {
 
     private static final String TAG = "HighlightUtil";

@@ -5,9 +5,12 @@ import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.WindowManager;
 
+import androidx.annotation.Keep;
+
 /**
  * Created by arthur on 06/10/16.
  */
+@Keep
 public class ScreenUtils {
 
     private Context ctx;

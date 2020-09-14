@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.Keep;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentTransaction;
@@ -20,7 +22,7 @@ import com.folioreader.ui.fragment.TableOfContentFragment;
 import com.folioreader.util.AppUtil;
 import com.folioreader.util.UiUtil;
 import org.readium.r2.shared.Publication;
-
+@Keep
 public class ContentHighlightActivity extends AppCompatActivity {
     private boolean mIsNightMode;
     private Config mConfig;

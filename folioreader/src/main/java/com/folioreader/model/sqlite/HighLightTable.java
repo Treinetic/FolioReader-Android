@@ -4,6 +4,9 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.text.TextUtils;
 import android.util.Log;
+
+import androidx.annotation.Keep;
+
 import com.folioreader.Constants;
 import com.folioreader.model.HighLight;
 import com.folioreader.model.HighlightImpl;
@@ -11,7 +14,7 @@ import com.folioreader.model.HighlightImpl;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-
+@Keep
 @SuppressWarnings("PMD.AvoidDuplicateLiterals")
 public class HighLightTable {
     public static final String TABLE_NAME = "highlight_table";

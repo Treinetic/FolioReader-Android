@@ -7,12 +7,15 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.text.Layout;
 import android.util.AttributeSet;
+
+import androidx.annotation.Keep;
 import androidx.appcompat.widget.AppCompatTextView;
 import com.folioreader.R;
 
 /**
  * Created by mobisys on 7/4/2016.
  */
+@Keep
 public class UnderlinedTextView extends AppCompatTextView {
 
     private Rect mRect;
